@@ -18,15 +18,16 @@
 
 <div align="center">
 
-<p style="font-size: 2em; font-weight: bold; margin-top: 20px; margin-bottom: 7px; line-height: 1;">onPanda</p>
+<p style="font-size: 2em; font-weight: bold; margin-top: 20px; margin-bottom: 7px; line-height: 1;">onPanda: Efficient Annotation of On-Policy Alignment Data for LLMs and Agents via Token-Level Correction
+</p>
 
-**Efficient Annotation of On-Policy Alignment Data for LLMs and Agents via Token-Level Correction**
 
 <br>
 
-Authors: **comming soon**
+**Lei Yang, Mengyin Liu**
 
-### Paper: comming soon | [Code](https://github.com/on-panda/on-panda) | Demo: comming soon | Dataset: comming soon
+### Paper | [Code](https://github.com/on-panda/on-panda) | Demo | Dataset
+(Paper, Demo, Dataset comming soon)
 
 </div>
 
@@ -47,23 +48,21 @@ We present onPanda, an interactive tool for efficiently annotating LLM alignment
 
 ### Token-Level Correction
 
-<br>
 <a href="img/fig1_UI-v4.png">
-  <img src="img/fig1_UI-v4.png" style="max-width:760px" loading="lazy">
+  <img src="img/fig1_UI-v4.png" style="max-width:400px" loading="lazy">
 </a>
 
 <p style="width:90%; text-align: justify"><b>The token-level correction interface of onPanda.</b> The annotator locates an inappropriate token, selects a better candidate or enters a free-form edit, and lets the model continue from the corrected prefix. Intermediate versions are retained automatically.</p>
 </div>
 
 ---
-<br>
 <div align="center">
 
 ### Agent Trajectory Annotation
 
 <br>
 <a href="img/fig2_agent-v4.png">
-  <img src="img/fig2_agent-v4.png" loading="lazy">
+  <img src="img/fig2_agent-v4.png"  style="max-width:700px" loading="lazy">
 </a>
 
 <p style="width:90%; text-align: justify"><b>Annotating an agent trajectory with onPanda.</b> Reasoning and tool-call arguments remain editable at token level. Corrected tool calls can be executed in the connected environment, and the resulting trajectory continues from the corrected context.</p>
