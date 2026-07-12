@@ -28,7 +28,7 @@
 
 **TL;DR:** An interactive tool that efficiently annotates on-policy alignment data for LLMs and agents via a token-level locate--correct--continue loop, automatically capturing fine-grained supervision.
 
-### Paper | [Code](https://github.com/on-panda/on-panda) | [Demo](https://out.diyer22.com:5180/) | Dataset
+### Paper | [Code](https://github.com/on-panda/on-panda) | [Demo](https://on-panda.diyer22.com/) | Dataset
 (Paper, Dataset comming soon)
 
 </div>
@@ -77,7 +77,7 @@ We present onPanda, an interactive tool for efficiently annotating LLM alignment
 - Paper: comming soon
 - [Code](https://github.com/on-panda/on-panda)
 - [Python library](https://github.com/on-panda/on-panda-python)
-- [Live demo](https://out.diyer22.com:5180/)
+- [Live demo](https://on-panda.diyer22.com/)
 - Panda-CVL dataset and benchmark: comming soon
 
 <!-- Google tag (gtag.js) -->
