@@ -18,23 +18,39 @@
 
 <div align="center">
 
-<p style="font-size: 2em; font-weight: bold; margin-top: 20px; margin-bottom: 7px; line-height: 1;">onPanda: Efficient Annotation of On-Policy Alignment Data for LLMs and Agents via Token-Level Correction
-</p>
+# onPanda: Efficient Annotation of On-Policy Alignment Data for LLMs and Agents via Token-Level Correction
 
+Lei Yang<sup>1</sup> &nbsp;&nbsp;&nbsp; Mengyin Liu<sup>1,2</sup> &nbsp;&nbsp;&nbsp; Jia Wang<sup>1</sup> &nbsp;&nbsp;&nbsp; Hangyu Guo<sup>1</sup> &nbsp;&nbsp;&nbsp; Liang Zhao<sup>1</sup> &nbsp;&nbsp;&nbsp; Zheng Ge<sup>1</sup>   
+Kang an<sup>1</sup> &nbsp;&nbsp;&nbsp; Binxing Jiao<sup>1</sup> &nbsp;&nbsp;&nbsp; Qi Han<sup>1</sup> &nbsp;&nbsp;&nbsp; Daxin Jiang<sup>1</sup> &nbsp;&nbsp;&nbsp; Siqi Shen<sup>2</sup> &nbsp;&nbsp;&nbsp; Xiangyu Zhang<sup>1</sup>
+
+
+
+<div style="margin-top:px;font-size:">
+  <sup>1</sup>
+  <a target="_blank" href="https://www.stepfun.com/">
+    <img src="img/logo-StepFun.png" style="max-height:20px">
+  </a>
+    &nbsp;
+  <sup>2</sup>
+  <a target="_blank" href="https://asc.xmu.edu.cn/t/shensiqi">
+    <img src="img/logo-xiamen-university.png" style="max-height:26px">
+  </a>
+</div>
 
 <br>
 
-**Lei Yang, Mengyin Liu, Jia Wang, Hangyu Guo, Liang Zhao, Zheng Ge, Kang an, Binxing Jiao, Qi Han, Daxin Jiang, Siqi Shen, Xiangyu Zhang**
-
-**TL;DR:** An interactive tool that efficiently annotates on-policy alignment data for LLMs and agents via a token-level locate--correct--continue loop, automatically capturing fine-grained supervision.
 
 ### Paper | [Code](https://github.com/on-panda/on-panda) | [Video](https://wvixbzgc0u7.feishu.cn/wiki/Zurxw3nX4iulXRk6Ze2c7RZ3nQp#share-XdTjdn9B4oxvgSxS0F3c4rAcn8b) | [Demo](https://on-panda.diyer22.com/) | Dataset
 (WIP: Paper, Dataset comming soon)
 
 </div>
 
----
 <br>
+
+
+**TL;DR:** An interactive tool that efficiently annotates on-policy alignment data for LLMs and agents via a token-level locate--correct--continue loop, automatically capturing fine-grained supervision.
+
+
 <div align="center">
 
 ### Abstract
@@ -81,6 +97,46 @@ We present onPanda, an interactive tool for efficiently annotating LLM alignment
 - [Live demo](https://on-panda.diyer22.com/)
 - Panda-CVL dataset and benchmark: comming soon
 
+
+
+<style>
+html, body {
+width: auto !important;
+max-width: 100% !important;
+padding: 0px !important;
+margin: 0px !important;
+}
+._theme-github {
+background-color: rgb(255, 255, 255);
+}
+.markdown-body {
+min-width: 468px;
+max-width: 1024px;
+background-color: rgb(255, 255, 255);
+overflow: auto;
+border-width: 1px;
+border-style: solid;
+border-color: rgb(221, 221, 221);
+border-image: initial;
+padding: 45px;
+margin: 20px auto;
+}
+
+
+.video-container {
+    width: 80%;
+    aspect-ratio: 1 / 1;
+    position: relative;
+    margin: auto;
+}
+
+.video-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+</style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-16K331E76Z"></script>
 <script>
