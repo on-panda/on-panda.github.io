@@ -61,7 +61,6 @@ We present onPanda, an interactive tool for efficiently annotating LLM alignment
 </em></p>
 
 ---
-<br>
 <div align="center">
 
 ### Token-Level Correction
@@ -78,13 +77,25 @@ We present onPanda, an interactive tool for efficiently annotating LLM alignment
 
 ### Agent Trajectory Annotation
 
-<br>
 <a href="img/fig2_agent-v4.png">
   <img src="img/fig2_agent-v4.png"  style="max-width:700px" loading="lazy">
 </a>
 
 <p style="width:90%; text-align: justify"><b>Annotating an agent trajectory with onPanda.</b> Reasoning and tool-call arguments remain editable at token level. Corrected tool calls can be executed in the connected environment, and the resulting trajectory continues from the corrected context.</p>
 </div>
+
+
+---
+<div align="center">
+
+### Comparison of Annotation Paradigms
+
+<a href="img/table1-annotaion-compare.png">
+  <img src="img/table1-annotaion-compare.png"  style="max-width:900px" loading="lazy">
+</a>
+
+</div>
+
 
 ---
 
