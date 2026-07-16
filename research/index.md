@@ -116,6 +116,7 @@ We present onPanda, an interactive tool for efficiently annotating LLM alignment
 - Paper: comming soon
 - [Source code](https://github.com/on-panda/on-panda)
 - [Python library](https://github.com/on-panda/on-panda-python)
+- [`panda.json` example](https://github.com/on-panda/on-panda-example-data/tree/main/panda_json)
 - [Demo video](https://wvixbzgc0u7.feishu.cn/wiki/Zurxw3nX4iulXRk6Ze2c7RZ3nQp#share-XdTjdn9B4oxvgSxS0F3c4rAcn8b)
 - [Live demo](https://on-panda.diyer22.com/)
 - Panda-CVL dataset and benchmark: comming soon
