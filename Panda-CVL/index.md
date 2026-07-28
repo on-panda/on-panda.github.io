@@ -97,7 +97,7 @@ A1:
 Q2: 为什么 Panda-CVL 大多数都是中文数据？  
 A2: 
 - Panda-CVL 是从内部标注的生产数据中筛选出适合公开的子集组成的，而我们标注员的母语都是中文
-- 我们还提供了 Panda-CVL 的子集—— [Panda-MultiRef-21](https://github.com/on-panda/Panda-MultiRef-21)，由擅长英文的标注员标注的纯英文数据，共包含 506 个 token-level correction 操作，可用于评估模型的英文 token-level correction 能力
+- 我们还提供了纯英文的 Panda-CVL 的子集—— [Panda-MultiRef-21](https://github.com/on-panda/Panda-MultiRef-21)，由擅长英文的标注员标注，共包含 506 个 token-level correction 操作，可用于评估模型的英文 token-level correction 能力
 
 
 ---
