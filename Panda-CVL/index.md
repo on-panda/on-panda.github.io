@@ -18,9 +18,9 @@
 
 <div align="center">
 
-<span style="font-size:30px;font-weight:555">Panda-CVL: Can LLMs Locate and Correct Erroneous Tokens? </span>
+<span style="font-size:32px;font-weight:555">Can LLMs Locate and Correct Erroneous Tokens? </span>
 <br>
-<span style="font-size:26px;font-weight:550">A Vision-Language Dataset and Benchmark for Token-Level Correction</span>
+<span style="font-size:24px;font-weight:550; border-bottom-color:rgb(216, 222, 228);border-bottom-style:solid;border-bottom-width:1px;margin-bottom:16px;padding-bottom:9.6px; display:block">Panda-CVL: A Vision-Language Dataset for Token-Level Correction</span>
 
 <!-- Lei Yang<sup>1</sup> &nbsp;&nbsp;&nbsp; Mengyin Liu<sup>1,2</sup> &nbsp;&nbsp;&nbsp; Jia Wang<sup>1</sup> &nbsp;&nbsp;&nbsp; Hangyu Guo<sup>1</sup> &nbsp;&nbsp;&nbsp; Liang Zhao<sup>1</sup> &nbsp;&nbsp;&nbsp; Zheng Ge<sup>1</sup>   
 Kang an<sup>1</sup> &nbsp;&nbsp;&nbsp; Binxing Jiao<sup>1</sup> &nbsp;&nbsp;&nbsp; Qi Han<sup>1</sup> &nbsp;&nbsp;&nbsp; Daxin Jiang<sup>1</sup> &nbsp;&nbsp;&nbsp; Siqi Shen<sup>2</sup> &nbsp;&nbsp;&nbsp; Xiangyu Zhang<sup>1</sup> -->
