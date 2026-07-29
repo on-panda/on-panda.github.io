@@ -4,16 +4,16 @@
     <meta name="description" content="Efficient Annotation of On-Policy Alignment Data for LLMs and Agents via Token-Level Correction">
     <meta name="keywords" content="onPanda, annotation tool, on-policy data, token-level correction, agent trajectory annotation">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="image" content="https://on-panda.github.io/research/img/fig1_UI-v4.png">
+    <meta name="image" content="https://on-panda.github.io/img/fig1_UI-v4.png">
     <meta property="og:title" content="onPanda: Efficient Annotation of On-Policy Alignment Data" />
     <meta property="og:description" content="Efficient Annotation of On-Policy Alignment Data for LLMs and Agents via Token-Level Correction" />
-    <meta property="og:image" content="https://on-panda.github.io/research/img/fig1_UI-v4.png" />
+    <meta property="og:image" content="https://on-panda.github.io/img/fig1_UI-v4.png" />
     <meta name="twitter:card" content="summary_large_image">
     <meta property="twitter:domain" content="on-panda.github.io">
     <meta property="twitter:url" content="https://on-panda.github.io/research">
     <meta name="twitter:title" content="onPanda: Efficient Annotation of On-Policy Alignment Data">
     <meta name="twitter:description" content="Efficient Annotation of On-Policy Alignment Data for LLMs and Agents via Token-Level Correction">
-    <meta name="twitter:image" content="https://on-panda.github.io/research/img/fig1_UI-v4.png">
+    <meta name="twitter:image" content="https://on-panda.github.io/img/fig1_UI-v4.png">
 </head>
 
 <div align="center">
@@ -28,12 +28,12 @@ Kang an<sup>1</sup> &nbsp;&nbsp;&nbsp; Binxing Jiao<sup>1</sup> &nbsp;&nbsp;&nbs
 <div style="margin-top:px;font-size:">
   <sup>1</sup>
   <a target="_blank" href="https://www.stepfun.com/">
-    <img src="img/logo-StepFun.png" style="max-height:20px">
+    <img src="../img/logo-StepFun.png" style="max-height:20px">
   </a>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <sup>2</sup>
   <a target="_blank" href="https://asc.xmu.edu.cn/t/shensiqi">
-    <img src="img/logo-xiamen-university.png" style="max-height:26px">
+    <img src="../img/logo-xiamen-university.png" style="max-height:26px">
   </a>
 </div>
 
@@ -53,8 +53,8 @@ Kang an<sup>1</sup> &nbsp;&nbsp;&nbsp; Binxing Jiao<sup>1</sup> &nbsp;&nbsp;&nbs
 
 <!-- ### Token-Level Correction -->
 
-<a href="img/fig1_UI-v4.png">
-  <img src="img/fig1_UI-v4.png" style="max-width:350px" loading="lazy">
+<a href="../img/fig1_UI-v4.png">
+  <img src="../img/fig1_UI-v4.png" style="max-width:350px" loading="lazy">
 </a>
 
 The token-level correction interface of onPanda
@@ -89,8 +89,8 @@ We present onPanda, an interactive tool for efficiently annotating LLM alignment
 
 ### Agent Trajectory Annotation
 
-<a href="img/fig2_agent-v4.png">
-  <img src="img/fig2_agent-v4.png"  style="max-width:600px" loading="lazy">
+<a href="../img/fig2_agent-v4.png">
+  <img src="../img/fig2_agent-v4.png"  style="max-width:600px" loading="lazy">
 </a>
 
 <p style="width:90%; text-align: justify"><b>Annotating an agent trajectory with onPanda.</b> Reasoning and tool-call arguments remain editable at token level. Corrected tool calls can be executed in the connected environment, and the resulting trajectory continues from the corrected context.</p>
@@ -102,8 +102,8 @@ We present onPanda, an interactive tool for efficiently annotating LLM alignment
 
 ### Comparison of Annotation Paradigms
 
-<a href="img/table1-annotaion-compare.png">
-  <img src="img/table1-annotaion-compare.png"  style="max-width:800px" loading="lazy">
+<a href="../img/table1-annotaion-compare.png">
+  <img src="../img/table1-annotaion-compare.png"  style="max-width:800px" loading="lazy">
 </a>
 
 </div>

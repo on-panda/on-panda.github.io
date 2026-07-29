@@ -4,16 +4,16 @@
     <meta name="description" content="Panda-CVL: Can LLMs Locate and Correct Erroneous Tokens? A Vision-Language Dataset and Benchmark for Token-Level Correction">
     <meta name="keywords" content="onPanda, Panda-CVL, on-policy data, token-level correction, process reward">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="image" content="https://on-panda.github.io/research/img/fig1_UI-v4.png">
+    <meta name="image" content="https://on-panda.github.io/img/fig1_UI-v4.png">
     <meta property="og:title" content="Panda-CVL: Can LLMs Locate and Correct Erroneous Tokens?" />
     <meta property="og:description" content="Panda-CVL: Can LLMs Locate and Correct Erroneous Tokens? A Vision-Language Dataset and Benchmark for Token-Level Correction" />
-    <meta property="og:image" content="https://on-panda.github.io/research/img/fig1_UI-v4.png" />
+    <meta property="og:image" content="https://on-panda.github.io/img/fig1_UI-v4.png" />
     <meta name="twitter:card" content="summary_large_image">
     <meta property="twitter:domain" content="on-panda.github.io">
     <meta property="twitter:url" content="https://on-panda.github.io/Panda-CVL">
     <meta name="twitter:title" content="Panda-CVL: Can LLMs Locate and Correct Erroneous Tokens?">
     <meta name="twitter:description" content="Panda-CVL: Can LLMs Locate and Correct Erroneous Tokens? A Vision-Language Dataset and Benchmark for Token-Level Correction">
-    <meta name="twitter:image" content="https://on-panda.github.io/research/img/fig1_UI-v4.png">
+    <meta name="twitter:image" content="https://on-panda.github.io/img/fig1_UI-v4.png">
 </head>
 
 <div align="center">
@@ -30,12 +30,12 @@ Kang an<sup>1</sup> &nbsp;&nbsp;&nbsp; Binxing Jiao<sup>1</sup> &nbsp;&nbsp;&nbs
 <div style="margin-top:px;font-size:">
   <sup>1</sup>
   <a target="_blank" href="https://www.stepfun.com/">
-    <img src="../research/img/logo-StepFun.png" style="max-height:20px">
+    <img src="../img/logo-StepFun.png" style="max-height:20px">
   </a>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <sup>2</sup>
   <a target="_blank" href="https://asc.xmu.edu.cn/t/shensiqi">
-    <img src="../research/img/logo-xiamen-university.png" style="max-height:26px">
+    <img src="../img/logo-xiamen-university.png" style="max-height:26px">
   </a>
 </div>
 
@@ -54,8 +54,8 @@ Kang an<sup>1</sup> &nbsp;&nbsp;&nbsp; Binxing Jiao<sup>1</sup> &nbsp;&nbsp;&nbs
 
 <!-- ### Token-Level Correction -->
 
-<a href="../research/img/fig1_UI-v4.png">
-  <img src="../research/img/fig1_UI-v4.png" style="max-width:350px" loading="lazy">
+<a href="../img/fig1_UI-v4.png">
+  <img src="../img/fig1_UI-v4.png" style="max-width:350px" loading="lazy">
 </a>
 
 The token-level correction interface used for annotating Panda-CVL   
