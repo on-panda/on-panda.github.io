@@ -66,7 +66,7 @@ For details about the annotation tool, see [onPanda](https://on-panda.github.io/
 
 <br>
 
-**TL;DR:** We release the multimodal Panda-CVL dataset with an accompanying benchmark, providing public resources for research on token-level correction data.
+**TL;DR:** We introduce Panda-CVL, a multimodal dataset and benchmark that formalizes token-level correction as a novel task, requiring models to identify the first inappropriate token in a response and predict an appropriate replacement token.
 
 ---
 <div align="center">
