@@ -43,7 +43,7 @@ Kang an<sup>1</sup> &nbsp;&nbsp;&nbsp; Binxing Jiao<sup>1</sup> &nbsp;&nbsp;&nbs
 
 <!-- Paper 📄 | Code 👨‍💻 | Demo 🎮 | Blog 📝 | Tweet 💬 | Poster 🖼️ -->
 
-### Paper 📄 | [Code 👨‍💻](https://github.com/on-panda/on-panda) | [Video ▶️](https://wvixbzgc0u7.feishu.cn/wiki/Zurxw3nX4iulXRk6Ze2c7RZ3nQp#share-XdTjdn9B4oxvgSxS0F3c4rAcn8b) | [Demo 🐼](https://on-panda.diyer22.com/) | Dataset 📁
+### Paper 📄 | [Code 👨‍💻](https://github.com/on-panda/on-panda) | [Video ▶️](https://wvixbzgc0u7.feishu.cn/wiki/Zurxw3nX4iulXRk6Ze2c7RZ3nQp#share-XdTjdn9B4oxvgSxS0F3c4rAcn8b) | [Demo 🐼](https://onpanda.diyer22.com/) | Dataset 📁
 (WIP: Paper, Dataset coming soon)
 
 </div>
@@ -118,7 +118,7 @@ We present onPanda, an interactive tool for efficiently annotating LLM alignment
 - [Python library](https://github.com/on-panda/on-panda-python)
 - [`panda.json` example](https://github.com/on-panda/on-panda-example-data/tree/main/panda_json)
 - [Demo video](https://wvixbzgc0u7.feishu.cn/wiki/Zurxw3nX4iulXRk6Ze2c7RZ3nQp#share-XdTjdn9B4oxvgSxS0F3c4rAcn8b)
-- [Live demo](https://on-panda.diyer22.com/)
+- [Live demo](https://onpanda.diyer22.com/)
 - Panda-CVL dataset and benchmark: coming soon
 - [Panda-MultiRef-21](https://github.com/on-panda/Panda-MultiRef-21): A Small Dataset for Studying the Distribution of Token-Level Corrections
 
