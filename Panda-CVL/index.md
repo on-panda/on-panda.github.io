@@ -133,12 +133,12 @@ A3: No -- Panda-CVL is introduced in the [onPanda paper](https://on-panda.github
 
 ### Resources
 
-- Paper: coming soon
+- [Paper (PDF)](../asset/onPanda_Efficient_Annotation_of_On-Policy_Alignment_Data_20260917.pdf)
 - [Python library](https://github.com/on-panda/on-panda-python): Including benchmark code
 - [`panda.json` example](https://github.com/on-panda/on-panda-example-data/tree/main/panda_json)
 - [Live demo](https://onpanda.diyer22.com/): To load `panda.json`
 - Panda-CVL dataset and benchmark: coming soon
-- [Panda-MultiRef-21](https://github.com/on-panda/Panda-MultiRef-21): A Small Dataset for Studying the Distribution of Token-Level Corrections
+- [Panda-MultiRef-21](https://github.com/on-panda/Panda-MultiRef-21): A Small Dataset for Studying the Distribution of Token-Level Corrections ([Browse dataset & try online annotation](http://121.36.40.207:5190/on-panda-annotate/))
 
 
 <style>
