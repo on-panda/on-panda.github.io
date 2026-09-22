@@ -65,6 +65,10 @@ For details about the annotation tool, see [onPanda](https://on-panda.github.io/
 </div>
 
 
+**Download the dataset on huggingFace 🤗:**
+- [Panda-CVL-train](https://huggingface.co/datasets/diyer22/Panda-CVL-train)
+- [Panda-CVL-test](https://huggingface.co/datasets/diyer22/Panda-CVL-test)
+
 <br>
 
 **TL;DR:** We introduce Panda-CVL, a multimodal dataset and benchmark that formalizes token-level correction as a novel task, requiring models to identify the first inappropriate token in a response and predict an appropriate replacement token.
@@ -138,8 +142,8 @@ A3: No -- Panda-CVL is introduced in the [onPanda paper](https://on-panda.github
 - [Python library](https://github.com/on-panda/on-panda-python): Including benchmark code
 - [`panda.json` example](https://github.com/on-panda/on-panda-example-data/tree/main/panda_json)
 - [Live demo](https://onpanda.diyer22.com/): To load `panda.json`
-- Panda-CVL dataset and benchmark: coming soon
-- [Panda-MultiRef-21](https://github.com/on-panda/Panda-MultiRef-21): A Small Dataset for Studying the Distribution of Token-Level Corrections ([Browse dataset & try online annotation](http://121.36.40.207:5190/on-panda-annotate/))
+- [Panda-MultiRef-21](https://github.com/on-panda/Panda-MultiRef-21): A Small Dataset for Studying the Distribution of Token-Level Corrections
+    - [Browse dataset & try online annotation](http://121.36.40.207:5190/on-panda-annotate/)
 
 
 <style>

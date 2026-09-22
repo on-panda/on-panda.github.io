@@ -43,7 +43,7 @@ Kang an<sup>1</sup> &nbsp;&nbsp;&nbsp; Binxing Jiao<sup>1</sup> &nbsp;&nbsp;&nbs
 
 <!-- Paper 📄 | Code 👨‍💻 | Demo 🎮 | Blog 📝 | Tweet 💬 | Poster 🖼️ -->
 
-### [Paper 📄](https://arxiv.org/abs/2609.24983) | [Code 👨‍💻](https://github.com/on-panda/on-panda) | [Video ▶️](https://x.com/diyerxx/status/2101020850405462041) | [Demo 🐼](https://onpanda.diyer22.com/) | Dataset 📁
+### [Paper 📄](https://arxiv.org/abs/2609.24983) | [Code 👨‍💻](https://github.com/on-panda/on-panda) | [Video ▶️](https://x.com/diyerxx/status/2101020850405462041) | [Demo 🐼](https://onpanda.diyer22.com/) | [Dataset 📁](https://on-panda.github.io/Panda-CVL/)
 
 </div>
 
@@ -120,8 +120,11 @@ We present onPanda, an interactive tool for efficiently annotating LLM alignment
 - [`panda.json` example](https://github.com/on-panda/on-panda-example-data/tree/main/panda_json)
 - [Demo video](https://x.com/diyerxx/status/2101020850405462041)
 - [Live demo](https://onpanda.diyer22.com/)
-- Panda-CVL dataset and benchmark: coming soon
-- [Panda-MultiRef-21](https://github.com/on-panda/Panda-MultiRef-21): A Small Dataset for Studying the Distribution of Token-Level Corrections ([Browse dataset & try online annotation](http://121.36.40.207:5190/on-panda-annotate/))
+- [Panda-CVL](https://on-panda.github.io/Panda-CVL/) dataset and benchmark
+    - [Panda-CVL-train](https://huggingface.co/datasets/diyer22/Panda-CVL-train)
+    - [Panda-CVL-test](https://huggingface.co/datasets/diyer22/Panda-CVL-test)
+- [Panda-MultiRef-21](https://github.com/on-panda/Panda-MultiRef-21): A Small Dataset for Studying the Distribution of Token-Level Corrections
+    - [Browse dataset & try online annotation](http://121.36.40.207:5190/on-panda-annotate/)
 
 
 <style>
