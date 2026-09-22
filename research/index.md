@@ -43,7 +43,7 @@ Kang an<sup>1</sup> &nbsp;&nbsp;&nbsp; Binxing Jiao<sup>1</sup> &nbsp;&nbsp;&nbs
 
 <!-- Paper 📄 | Code 👨‍💻 | Demo 🎮 | Blog 📝 | Tweet 💬 | Poster 🖼️ -->
 
-### [Paper 📄](../asset/onPanda_Efficient_Annotation_of_On-Policy_Alignment_Data_20260917.pdf) | [Code 👨‍💻](https://github.com/on-panda/on-panda) | [Video ▶️](https://wvixbzgc0u7.feishu.cn/wiki/Zurxw3nX4iulXRk6Ze2c7RZ3nQp#share-XdTjdn9B4oxvgSxS0F3c4rAcn8b) | [Demo 🐼](https://onpanda.diyer22.com/) | Dataset 📁
+### [Paper 📄](https://arxiv.org/abs/2609.24983) | [Code 👨‍💻](https://github.com/on-panda/on-panda) | [Video ▶️](https://x.com/diyerxx/status/2101020850405462041) | [Demo 🐼](https://onpanda.diyer22.com/) | Dataset 📁
 
 </div>
 
@@ -52,9 +52,11 @@ Kang an<sup>1</sup> &nbsp;&nbsp;&nbsp; Binxing Jiao<sup>1</sup> &nbsp;&nbsp;&nbs
 
 <!-- ### Token-Level Correction -->
 
-<a href="../img/fig1_UI-v4.png">
-  <img src="../img/fig1_UI-v4.png" style="max-width:350px" loading="lazy">
+<br>
+<a href="../img/onPanda-token-level-correction.gif">
+  <img src="../img/onPanda-token-level-correction.gif" style="max-width:500px; box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 8px;">
 </a>
+<br>
 
 The token-level correction interface of onPanda
 <!-- <p style="width:90%; text-align: justify"><b>The token-level correction interface of onPanda.</b> The annotator locates an inappropriate token, selects a better candidate or enters a free-form edit, and lets the model continue from the corrected prefix. Intermediate versions are retained automatically.</p> -->
@@ -112,11 +114,11 @@ We present onPanda, an interactive tool for efficiently annotating LLM alignment
 
 ### Resources
 
-- [Paper (PDF)](../asset/onPanda_Efficient_Annotation_of_On-Policy_Alignment_Data_20260917.pdf)
+- [Paper (arXiv)](https://arxiv.org/abs/2609.24983)
 - [Source code](https://github.com/on-panda/on-panda)
 - [Python library](https://github.com/on-panda/on-panda-python)
 - [`panda.json` example](https://github.com/on-panda/on-panda-example-data/tree/main/panda_json)
-- [Demo video](https://wvixbzgc0u7.feishu.cn/wiki/Zurxw3nX4iulXRk6Ze2c7RZ3nQp#share-XdTjdn9B4oxvgSxS0F3c4rAcn8b)
+- [Demo video](https://x.com/diyerxx/status/2101020850405462041)
 - [Live demo](https://onpanda.diyer22.com/)
 - Panda-CVL dataset and benchmark: coming soon
 - [Panda-MultiRef-21](https://github.com/on-panda/Panda-MultiRef-21): A Small Dataset for Studying the Distribution of Token-Level Corrections ([Browse dataset & try online annotation](http://121.36.40.207:5190/on-panda-annotate/))

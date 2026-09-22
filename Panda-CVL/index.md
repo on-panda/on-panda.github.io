@@ -45,7 +45,7 @@ Kang an<sup>1</sup> &nbsp;&nbsp;&nbsp; Binxing Jiao<sup>1</sup> &nbsp;&nbsp;&nbs
 
 <!-- Paper 📄 | Code 👨‍💻 | Demo 🎮 | Blog 📝 | Tweet 💬 | Poster 🖼️ -->
 
-<!-- ### Paper 📄 | [Code 👨‍💻](https://github.com/on-panda/on-panda) | [Video ▶️](https://wvixbzgc0u7.feishu.cn/wiki/Zurxw3nX4iulXRk6Ze2c7RZ3nQp#share-XdTjdn9B4oxvgSxS0F3c4rAcn8b) | [Demo 🐼](https://onpanda.diyer22.com/) | Dataset 📁 -->
+<!-- ### Paper 📄 | [Code 👨‍💻](https://github.com/on-panda/on-panda) | [Video ▶️](https://x.com/diyerxx/status/2101020850405462041) | [Demo 🐼](https://onpanda.diyer22.com/) | Dataset 📁 -->
 
 </div>
 
@@ -54,9 +54,10 @@ Kang an<sup>1</sup> &nbsp;&nbsp;&nbsp; Binxing Jiao<sup>1</sup> &nbsp;&nbsp;&nbs
 
 <!-- ### Token-Level Correction -->
 
-<a href="../img/fig1_UI-v4.png">
-  <img src="../img/fig1_UI-v4.png" style="max-width:350px" loading="lazy">
+<a href="../img/onPanda-token-level-correction.gif">
+  <img src="../img/onPanda-token-level-correction.gif" style="max-width:500px; box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 8px;">
 </a>
+<br>
 
 The token-level correction interface used for annotating Panda-CVL   
 For details about the annotation tool, see [onPanda](https://on-panda.github.io/research/)
@@ -133,7 +134,7 @@ A3: No -- Panda-CVL is introduced in the [onPanda paper](https://on-panda.github
 
 ### Resources
 
-- [Paper (PDF)](../asset/onPanda_Efficient_Annotation_of_On-Policy_Alignment_Data_20260917.pdf)
+- [Paper (arXiv)](https://arxiv.org/abs/2609.24983)
 - [Python library](https://github.com/on-panda/on-panda-python): Including benchmark code
 - [`panda.json` example](https://github.com/on-panda/on-panda-example-data/tree/main/panda_json)
 - [Live demo](https://onpanda.diyer22.com/): To load `panda.json`
