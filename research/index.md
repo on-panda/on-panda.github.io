@@ -121,8 +121,8 @@ We present onPanda, an interactive tool for efficiently annotating LLM alignment
 - [Demo video](https://x.com/diyerxx/status/2101020850405462041)
 - [Live demo](https://onpanda.diyer22.com/)
 - [Panda-CVL](https://on-panda.github.io/Panda-CVL/) dataset and benchmark
-    - [Panda-CVL-train](https://huggingface.co/datasets/diyer22/Panda-CVL-train)
     - [Panda-CVL-test](https://huggingface.co/datasets/diyer22/Panda-CVL-test)
+    - [Panda-CVL-train](https://huggingface.co/datasets/diyer22/Panda-CVL-train)
 - [Panda-MultiRef-21](https://github.com/on-panda/Panda-MultiRef-21): A Small Dataset for Studying the Distribution of Token-Level Corrections
     - [Browse dataset & try online annotation](http://121.36.40.207:5190/on-panda-annotate/)
 

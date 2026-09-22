@@ -66,8 +66,8 @@ For details about the annotation tool, see [onPanda](https://on-panda.github.io/
 
 
 **Download the dataset on huggingFace 🤗:**
-- [Panda-CVL-train](https://huggingface.co/datasets/diyer22/Panda-CVL-train)
 - [Panda-CVL-test](https://huggingface.co/datasets/diyer22/Panda-CVL-test)
+- [Panda-CVL-train](https://huggingface.co/datasets/diyer22/Panda-CVL-train)
 
 <br>
 
