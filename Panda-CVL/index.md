@@ -42,11 +42,6 @@ Kang an<sup>1</sup> &nbsp;&nbsp;&nbsp; Binxing Jiao<sup>1</sup> &nbsp;&nbsp;&nbs
 <br>
 
 
-
-<!-- Paper 📄 | Code 👨‍💻 | Demo 🎮 | Blog 📝 | Tweet 💬 | Poster 🖼️ -->
-
-<!-- ### Paper 📄 | [Code 👨‍💻](https://github.com/on-panda/on-panda) | [Video ▶️](https://x.com/diyerxx/status/2101020850405462041) | [Demo 🐼](https://onpanda.diyer22.com/) | Dataset 📁 -->
-
 </div>
 
 

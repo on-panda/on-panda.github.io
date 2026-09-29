@@ -43,7 +43,7 @@ Kang an<sup>1</sup> &nbsp;&nbsp;&nbsp; Binxing Jiao<sup>1</sup> &nbsp;&nbsp;&nbs
 
 <!-- Paper 📄 | Code 👨‍💻 | Demo 🎮 | Blog 📝 | Tweet 💬/🐦 | Poster 🖼️ -->
 
-### [Paper 📄](https://arxiv.org/abs/2609.24983) | [Demo 🎮](https://onpanda.diyer22.com/) | [Video ▶️](https://youtu.be/0T4h4IUIZCM) | [Tweet 💬](https://x.com/diyerxx/status/2101020850405462041) | [Dataset 📁](https://on-panda.github.io/Panda-CVL/) | [Code 👨‍💻](https://github.com/on-panda/on-panda)
+### [Paper 📄](https://arxiv.org/abs/2609.24983) | [Demo 🎮](https://onpanda.diyer22.com/) | [Video ▶️](https://youtu.be/0T4h4IUIZCM) | [Tweet 💬](https://x.com/StepFun_ai/status/2102454115473510643) | [Dataset 📁](https://on-panda.github.io/Panda-CVL/) | [Code 👨‍💻](https://github.com/on-panda/on-panda)
 
 </div>
 
@@ -119,7 +119,7 @@ Try <code>agent-annotate</code> example in the <a href="https://onpanda.diyer22.
 - [Source code](https://github.com/on-panda/on-panda)
 - [Python library](https://github.com/on-panda/on-panda-python)
 <!-- - [`panda.json` example](https://github.com/on-panda/on-panda-example-data/tree/main/panda_json) -->
-- [Demo video](https://x.com/diyerxx/status/2101020850405462041)
+- [Demo video](https://x.com/StepFun_ai/status/2102454115473510643)
 - [Live demo](https://onpanda.diyer22.com/)
 - [Panda-CVL](https://on-panda.github.io/Panda-CVL/): Dataset and Benchmark for Token-Level Correction
     <!-- - [Panda-CVL-test](https://huggingface.co/datasets/diyer22/Panda-CVL-test)
