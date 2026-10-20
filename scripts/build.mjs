@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Offline, dependency-free site builder. Only Node's standard library is used.
+// Site metadata/templates/SEO use Node's standard library; rendering uses Markdown Viewer's stack.
 import { readFile, readdir, writeFile } from 'node:fs/promises';
 import { dirname, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';

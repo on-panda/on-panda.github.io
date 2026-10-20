@@ -77,9 +77,9 @@
 <body class="_theme-github _color-light">
   <main id="_html" class="markdown-body">
 <div align="center">
+
 <h1 id="onpanda-efficient-annotation-of-on-policy-alignment-data-for-llms-and-agents-via-token-level-correction"><a class="anchor" href="#onpanda-efficient-annotation-of-on-policy-alignment-data-for-llms-and-agents-via-token-level-correction" aria-label="Link to this section"><span class="octicon octicon-link" aria-hidden="true"></span></a>onPanda: Efficient Annotation of On-Policy Alignment Data for LLMs and Agents via Token-Level Correction</h1>
-<p>Lei Yang<sup>1</sup> &nbsp;&nbsp;&nbsp; Mengyin Liu<sup>1,2</sup> &nbsp;&nbsp;&nbsp; Jia Wang<sup>1</sup> &nbsp;&nbsp;&nbsp; Hangyu Guo<sup>1</sup> &nbsp;&nbsp;&nbsp; Liang Zhao<sup>1</sup> &nbsp;&nbsp;&nbsp; Zheng Ge<sup>1</sup><br>
-Kang an<sup>1</sup> &nbsp;&nbsp;&nbsp; Binxing Jiao<sup>1</sup> &nbsp;&nbsp;&nbsp; Qi Han<sup>1</sup> &nbsp;&nbsp;&nbsp; Daxin Jiang<sup>1</sup> &nbsp;&nbsp;&nbsp; Siqi Shen<sup>2</sup> &nbsp;&nbsp;&nbsp; Xiangyu Zhang<sup>1</sup></p>
+<p>Lei Yang<sup>1</sup> &nbsp;&nbsp;&nbsp; Mengyin Liu<sup>1,2</sup> &nbsp;&nbsp;&nbsp; Jia Wang<sup>1</sup> &nbsp;&nbsp;&nbsp; Hangyu Guo<sup>1</sup> &nbsp;&nbsp;&nbsp; Liang Zhao<sup>1</sup> &nbsp;&nbsp;&nbsp; Zheng Ge<sup>1</sup><br>Kang an<sup>1</sup> &nbsp;&nbsp;&nbsp; Binxing Jiao<sup>1</sup> &nbsp;&nbsp;&nbsp; Qi Han<sup>1</sup> &nbsp;&nbsp;&nbsp; Daxin Jiang<sup>1</sup> &nbsp;&nbsp;&nbsp; Siqi Shen<sup>2</sup> &nbsp;&nbsp;&nbsp; Xiangyu Zhang<sup>1</sup></p>
 <div style="margin-top:px;font-size:">
   <sup>1</sup>
   <a target="_blank" href="https://www.stepfun.com/">
@@ -91,67 +91,90 @@ Kang an<sup>1</sup> &nbsp;&nbsp;&nbsp; Binxing Jiao<sup>1</sup> &nbsp;&nbsp;&nbs
     <img src="../img/logo-xiamen-university.png" style="max-height:26px">
   </a>
 </div>
+
 <br>
+
+
+
 <!-- Paper 📄 | Code 👨‍💻 | Demo 🎮 | Blog 📝 | Tweet 💬/🐦 | Poster 🖼️ -->
+
 <h3 id="paper---demo---video-️--tweet---dataset---code-"><a class="anchor" href="#paper---demo---video-️--tweet---dataset---code-" aria-label="Link to this section"><span class="octicon octicon-link" aria-hidden="true"></span></a><a href="https://arxiv.org/abs/2609.24983">Paper 📄</a> | <a href="https://onpanda.diyer22.com/">Demo 🎮</a> | <a href="https://youtu.be/0T4h4IUIZCM">Video ▶️</a> | <a href="https://x.com/StepFun_ai/status/2102454115473510643">Tweet 💬</a> | <a href="https://on-panda.github.io/Panda-CVL/">Dataset 📁</a> | <a href="https://github.com/on-panda/on-panda">Code 👨‍💻</a></h3>
 </div>
+
+
 <div align="center">
+
 <!-- ### Token-Level Correction -->
+
 <br>
 <a href="../img/onPanda-token-level-correction.gif">
   <img src="../img/onPanda-token-level-correction.gif" style="max-width:500px; box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 8px;">
 </a>
 <br>
-<p>onPanda's token-level correction interface. Try the <b><a href="https://onpanda.diyer22.com/" target="_blank">live demo</a></b>.</p>
+
+<p>onPanda&#39;s token-level correction interface. Try the <b><a href="https://onpanda.diyer22.com/" target="_blank">live demo</a></b>.</p>
 <!-- <p style="width:90%; text-align: justify"><b>The token-level correction interface of onPanda.</b> The annotator locates an inappropriate token, selects a better candidate or enters a free-form edit, and lets the model continue from the corrected prefix. Intermediate versions are retained automatically.</p> -->
+
 </div>
+
+
 <br>
+
 <p><strong>TL;DR:</strong> An interactive tool that efficiently annotates on-policy alignment data for LLMs and agents via a token-level locate--correct--continue loop, automatically capturing fine-grained supervision.</p>
 <p><em><strong>Contributions of this paper:</strong></em></p>
 <ul>
-<li>We propose onPanda, an annotation tool centered on token-level correction for efficiently annotating LLM alignment data and agent trajectories that stay close to the rollout model's distribution.</li>
-<li>We experimentally validate onPanda's annotation efficiency and the on-policy fidelity of the produced data, and demonstrate its support for multimodal and agent-trajectory annotation.</li>
+<li>We propose onPanda, an annotation tool centered on token-level correction for efficiently annotating LLM alignment data and agent trajectories that stay close to the rollout model&#39;s distribution.</li>
+<li>We experimentally validate onPanda&#39;s annotation efficiency and the on-policy fidelity of the produced data, and demonstrate its support for multimodal and agent-trajectory annotation.</li>
 <li>We release the multimodal Panda-CVL dataset with an accompanying benchmark, providing public resources for research on token-level correction data.</li>
 </ul>
 <hr>
 <div align="center">
+
 <h3 id="abstract"><a class="anchor" href="#abstract" aria-label="Link to this section"><span class="octicon octicon-link" aria-hidden="true"></span></a>Abstract</h3>
 <p style="text-align: justify;text-indent: 2em; width:90%; ">
 We present onPanda, an interactive tool for efficiently annotating LLM alignment data and agent trajectories. onPanda adopts token-level correction as its core interaction: while reading a model response, the annotator locates the first inappropriate token and either picks a substitute from the model's candidate tokens or types the correct text via free-form editing. The system then truncates everything after that position and continues generation from the corrected prefix, repeating this locate-correct-continue loop until a satisfactory response is obtained. This mechanism lets annotators precisely steer model outputs at low cost: a small controlled study suggests that onPanda reduces median annotation time by 52% over manual post-editing. Since the vast majority of tokens in the final response are generated by the model itself, the resulting data largely preserves the model's sampling distribution and is well suited for constructing on-policy SFT and preference data. Furthermore, the token-level corrections recorded during annotation provide fine-grained supervision with precise positions and naturally paired positive--negative samples. onPanda also connects to external tools and harnesses, enabling interactive trajectory annotation in realistic environments. In addition, we release Panda-CVL, a dataset annotated with onPanda, together with a benchmark for token-level correction.
 </p>
+
 </div>
+
 <hr>
 <div align="center">
+
 <h3 id="agent-trajectory-annotation"><a class="anchor" href="#agent-trajectory-annotation" aria-label="Link to this section"><span class="octicon octicon-link" aria-hidden="true"></span></a>Agent Trajectory Annotation</h3>
 <a href="../img/fig2_agent-v4.png">
   <img src="../img/fig2_agent-v4.png"  style="max-width:600px" loading="lazy">
 </a>
+
 <p style="width:90%; text-align: justify"><b>Annotating an agent trajectory with onPanda.</b> Reasoning and tool-call arguments remain editable at token level. Corrected tool calls can be executed in the connected environment, and the resulting trajectory continues from the corrected context. 
 Try <code>agent-annotate</code> example in the <a href="https://onpanda.diyer22.com/" target="_blank">live demo</a>.</p>
 </div>
+
+
 <hr>
 <div align="center">
+
 <h3 id="comparison-of-annotation-paradigms"><a class="anchor" href="#comparison-of-annotation-paradigms" aria-label="Link to this section"><span class="octicon octicon-link" aria-hidden="true"></span></a>Comparison of Annotation Paradigms</h3>
 <a href="../img/table1-annotaion-compare.png">
   <img src="../img/table1-annotaion-compare.png"  style="max-width:800px" loading="lazy">
 </a>
+
 </div>
+
+
 <hr>
 <h3 id="resources"><a class="anchor" href="#resources" aria-label="Link to this section"><span class="octicon octicon-link" aria-hidden="true"></span></a>Resources</h3>
 <ul>
 <li><a href="https://arxiv.org/abs/2609.24983">Paper (arXiv)</a></li>
 <li><a href="https://github.com/on-panda/on-panda">Source code</a></li>
-<li><a href="https://github.com/on-panda/on-panda-python">Python library</a>
-<!-- - [`panda.json` example](https://github.com/on-panda/on-panda-example-data/tree/main/panda_json) --></li>
+<li><a href="https://github.com/on-panda/on-panda-python">Python library</a><!-- - [`panda.json` example](https://github.com/on-panda/on-panda-example-data/tree/main/panda_json) --></li>
 <li><a href="https://x.com/StepFun_ai/status/2102454115473510643">Demo video</a></li>
 <li><a href="https://onpanda.diyer22.com/">Live demo</a></li>
-<li><a href="https://on-panda.github.io/Panda-CVL/">Panda-CVL</a>: Dataset and Benchmark for Token-Level Correction
-  <!-- - [Panda-CVL-test](https://huggingface.co/datasets/diyer22/Panda-CVL-test)
+<li><a href="https://on-panda.github.io/Panda-CVL/">Panda-CVL</a>: Dataset and Benchmark for Token-Level Correction  <!-- - [Panda-CVL-test](https://huggingface.co/datasets/diyer22/Panda-CVL-test)
   - [Panda-CVL-train](https://huggingface.co/datasets/diyer22/Panda-CVL-train) --></li>
-<li><a href="https://github.com/on-panda/Panda-MultiRef-21">Panda-MultiRef-21</a>: A Small Dataset for Studying the Distribution of Token-Level Corrections
-<ul>
+<li><a href="https://github.com/on-panda/Panda-MultiRef-21">Panda-MultiRef-21</a>: A Small Dataset for Studying the Distribution of Token-Level Corrections<ul>
 <li><a href="http://121.36.40.207:5190/on-panda-annotate/"><strong>Browse dataset &amp; try annotation online</strong></a></li>
-</ul></li>
+</ul>
+</li>
 </ul>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-16K331E76Z"></script>

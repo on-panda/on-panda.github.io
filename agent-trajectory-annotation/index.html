@@ -82,9 +82,11 @@
     <iframe width="560" height="315" src="https://www.youtube.com/embed/0T4h4IUIZCM?si=xX-W1SlEW8h5ZBQK&amp;start=102" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     <br>
     <sub>Watch the <a href="https://youtu.be/0T4h4IUIZCM?t=102">screen recording of agent trajectory annotation in onPanda (starting at 1:42)</a></sub>
+
 <br>
 <br>
 </div>
+
 <p>Existing agent observability and annotation tools (such as <a href="https://github.com/davidjurgens/potato">Potato</a> and <a href="https://github.com/argilla-io/argilla">Argilla</a>) mostly support assigning attributes or adding textual feedback to completed trajectories. However, editing trajectories to construct high-quality multi-turn agent SFT data presents two core challenges:</p>
 <ol>
 <li><strong>Coupled environment state</strong>: Agent trajectories alternate between tool calls (<code>tool_calls</code>) and environment feedback (<code>tool</code> messages). Once a tool call in a given turn is modified, the original subsequent trajectory is usually no longer valid—the corrected call must be executed in the real environment, and generation must continue from the new feedback.</li>
@@ -92,22 +94,26 @@
 </ol>
 <p><a href="https://github.com/on-panda/on-panda"><strong>onPanda</strong></a> (<a href="https://on-panda.github.io/research/">Project Page</a>) is an open-source LLM alignment data annotation tool built around the paradigm of <strong>correcting the generation process in real time</strong> rather than rewriting outputs after the fact. onPanda dynamically connects to real agent runtime environments, allowing annotators to efficiently edit <code>reasoning</code>, <code>content</code>, and <code>tool_calls</code> at the token level and produce SFT, preference, and token-level supervision data with high on-policy fidelity through real environment interaction.</p>
 <div align="center">
+
 <h3 id="live-demo---video-demo-️--paper---source-code-"><a class="anchor" href="#live-demo---video-demo-️--paper---source-code-" aria-label="Link to this section"><span class="octicon octicon-link" aria-hidden="true"></span></a><a href="https://onpanda.diyer22.com/?example=agent-annotate">Live Demo 🎮</a> | <a href="https://youtu.be/0T4h4IUIZCM">Video Demo ▶️</a> | <a href="https://arxiv.org/abs/2609.24983">Paper 📄</a> | <a href="https://github.com/on-panda/on-panda">Source Code 👨‍💻</a></h3>
 </div>
+
 <h2 id="annotation-interface-and-interaction"><a class="anchor" href="#annotation-interface-and-interaction" aria-label="Link to this section"><span class="octicon octicon-link" aria-hidden="true"></span></a>Annotation interface and interaction</h2>
-<p>In onPanda, while reading the model output, annotators simply <strong>locate the first inappropriate token</strong> and either select a replacement from the model's <code>top_logprobs</code> candidates or double-click to type a correction directly. onPanda then truncates everything after that position and lets the model continue generating from the corrected prefix:</p>
+<p>In onPanda, while reading the model output, annotators simply <strong>locate the first inappropriate token</strong> and either select a replacement from the model&#39;s <code>top_logprobs</code> candidates or double-click to type a correction directly. onPanda then truncates everything after that position and lets the model continue generating from the corrected prefix:</p>
 <p align="center">
     <img src="https://on-panda.github.io/img/onPanda-token-level-correction.gif" alt="onPanda token-level correction interaction: hover to select candidates and continue from prefix" style="width:500px; max-width:100%; height:auto" loading="lazy">
 </p>
-<p>For multi-turn agent trajectories, onPanda seamlessly extends this "locate–correct–continue" loop to reasoning chains and tool calls:</p>
+
+<p>For multi-turn agent trajectories, onPanda seamlessly extends this &quot;locate–correct–continue&quot; loop to reasoning chains and tool calls:</p>
 <p align="center">
     <a href="https://on-panda.github.io/img/fig2_agent-v4.png">
         <img src="https://on-panda.github.io/img/fig2_agent-v4.png" alt="Annotating Agent Trajectories with onPanda" style="max-width:650px; width:100%; height:auto" loading="lazy">
     </a>
 </p>
-<p>As shown above, onPanda's agent annotation interface features three core mechanisms:</p>
+
+<p>As shown above, onPanda&#39;s agent annotation interface features three core mechanisms:</p>
 <ol>
-<li><strong>Synchronized dual-view editing</strong>: Through bidirectional conversion via the Response Template, annotators can click candidates or edit tokens directly in the structured <code>reasoning</code> and <code>tool_calls</code> panels on the right, or modify the model's native token stream on the left (even inserting special tokens such as <code>&lt;/think&gt;</code> to truncate overly long reasoning).</li>
+<li><strong>Synchronized dual-view editing</strong>: Through bidirectional conversion via the Response Template, annotators can click candidates or edit tokens directly in the structured <code>reasoning</code> and <code>tool_calls</code> panels on the right, or modify the model&#39;s native token stream on the left (even inserting special tokens such as <code>&lt;/think&gt;</code> to truncate overly long reasoning).</li>
 <li><strong>Pre-execution interception (Tool Call Control)</strong>: Execution pauses before a tool modifies the environment. Annotators can fix <code>tool_calls</code> arguments before clicking <strong>Run</strong> to approve execution, or click <strong>Reject</strong> to decline the call (optionally with textual guidance so the model can replan).</li>
 <li><strong>Automatic annotation tree branching (<code>1~7</code> at the bottom)</strong>: Every prefix edit or rejected tool call is automatically saved as a separate branch, naturally forming preference pairs under the exact same context prefix.</li>
 </ol>
@@ -116,37 +122,37 @@
 <p>Annotating agent trajectories in onPanda relies on real environment feedback and supports two ways to connect the target environment:</p>
 <ol>
 <li><strong>Native MCP integration</strong>: onPanda natively supports MCP (Model Context Protocol). Any tool environment exposed as a Streamable HTTP MCP Server can be connected directly to the annotation workflow.</li>
-<li><strong>Existing agent harness integration</strong>: If your target environment is an existing agent framework (harness), the companion <a href="https://github.com/on-panda/harness_to_mcp"><strong>harness_to_mcp</strong></a> tool wraps the harness's internal tools and runtime environment into an MCP Server for onPanda.
-<ul>
+<li><strong>Existing agent harness integration</strong>: If your target environment is an existing agent framework (harness), the companion <a href="https://github.com/on-panda/harness_to_mcp"><strong>harness_to_mcp</strong></a> tool wraps the harness&#39;s internal tools and runtime environment into an MCP Server for onPanda.<ul>
 <li><code>harness_to_mcp</code> natively supports <strong>Claude Code, Codex, and OpenCode</strong>. To support another custom harness, a coding agent can quickly implement an adapter by referencing the existing ones.</li>
-</ul></li>
+</ul>
+</li>
 </ol>
 <p>To connect, simply specify the MCP server URL in <code>tool_configs</code> within your annotation data and set <code>&quot;require_approval&quot;: &quot;always&quot;</code> to enable human interception and approval before tool execution (see the <a href="https://github.com/on-panda/on-panda-docs/blob/main/content/en/panda_json_format.md"><code>.panda.json</code> Data Format Specification</a>):</p>
-<pre><code class="language-json">{
-  &quot;version&quot;: &quot;2.0&quot;,
-  &quot;dialogs&quot;: {
-    &quot;1&quot;: {
-      &quot;messages&quot;: [{ &quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;What tools do you have available?&quot; }],
-      &quot;tool_configs&quot;: [
-        {
-          &quot;type&quot;: &quot;mcp&quot;,
-          &quot;server_url&quot;: &quot;http://127.0.0.1:9330/mcp&quot;,
-          &quot;server_label&quot;: &quot;claude-code&quot;,
-          &quot;require_approval&quot;: &quot;always&quot;
-        }
-      ]
-    }
-  }
-}
+<pre class="language-json" tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"2.0"</span><span class="token punctuation">,</span>
+  <span class="token property">"dialogs"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"1"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"messages"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span> <span class="token property">"role"</span><span class="token operator">:</span> <span class="token string">"user"</span><span class="token punctuation">,</span> <span class="token property">"content"</span><span class="token operator">:</span> <span class="token string">"What tools do you have available?"</span> <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token property">"tool_configs"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+          <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"mcp"</span><span class="token punctuation">,</span>
+          <span class="token property">"server_url"</span><span class="token operator">:</span> <span class="token string">"http://127.0.0.1:9330/mcp"</span><span class="token punctuation">,</span>
+          <span class="token property">"server_label"</span><span class="token operator">:</span> <span class="token string">"claude-code"</span><span class="token punctuation">,</span>
+          <span class="token property">"require_approval"</span><span class="token operator">:</span> <span class="token string">"always"</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
-<p>Beyond environment integration, token-level correction requires an inference API that supports continuing generation from an assistant prefix (such as vLLM's <code>continue_final_message</code>), candidate selection relies on <code>top_logprobs</code>, and continuation within <code>reasoning</code> and <code>tool_calls</code> is handled automatically by built-in Response Templates. For supported inference engines (vLLM, SGLang, llama.cpp) and hosted API providers, see <a href="https://github.com/on-panda/on-panda-docs/blob/main/content/en/API_compatibility.md">API Compatibility</a>.</p>
+<p>Beyond environment integration, token-level correction requires an inference API that supports continuing generation from an assistant prefix (such as vLLM&#39;s <code>continue_final_message</code>), candidate selection relies on <code>top_logprobs</code>, and continuation within <code>reasoning</code> and <code>tool_calls</code> is handled automatically by built-in Response Templates. For supported inference engines (vLLM, SGLang, llama.cpp) and hosted API providers, see <a href="https://github.com/on-panda/on-panda-docs/blob/main/content/en/API_compatibility.md">API Compatibility</a>.</p>
 <h2 id="benefits-of-the-token-level-correction-paradigm"><a class="anchor" href="#benefits-of-the-token-level-correction-paradigm" aria-label="Link to this section"><span class="octicon octicon-link" aria-hidden="true"></span></a>Benefits of the token-level correction paradigm</h2>
-<p>Compared with traditional manual post-editing or multi-sample preference ranking, onPanda's token-level correction workflow offers several key advantages:</p>
+<p>Compared with traditional manual post-editing or multi-sample preference ranking, onPanda&#39;s token-level correction workflow offers several key advantages:</p>
 <ul>
 <li><strong>2× faster annotation</strong>: Candidate selection and local edits steer model continuation without rewriting from scratch. In our controlled study, onPanda reduced median per-item annotation time by <strong>52%</strong> compared with manual post-editing.</li>
 <li><strong>SFT and preference data from a single workflow</strong>: Final accepted responses and pre-correction/rejected branches are preserved automatically, constructing high-quality preference pairs under the exact same context prefix.</li>
 <li><strong>Fine-grained token-level supervision</strong>: Every correction records the exact first-error position and paired positive/negative tokens, which can be used directly for fine-grained alignment or combined with task step boundaries to construct Process Reward data for PRM training.</li>
-<li><strong>High on-policy fidelity</strong>: In StepFun's production deployment, <strong>97.0% of tokens</strong> in qualified responses are generated by the rollout model itself; in the controlled study, perplexity shift relative to the model's resampling baseline is <strong>ΔPPL &lt; 1%</strong>, closely preserving the model's native distribution.</li>
+<li><strong>High on-policy fidelity</strong>: In StepFun&#39;s production deployment, <strong>97.0% of tokens</strong> in qualified responses are generated by the rollout model itself; in the controlled study, perplexity shift relative to the model&#39;s resampling baseline is <strong>ΔPPL &lt; 1%</strong>, closely preserving the model&#39;s native distribution.</li>
 <li><strong>Significantly lower annotator workload</strong>: In the user study, onPanda achieved an overall NASA-TLX workload score of <strong>3.1</strong> (substantially lower than 5.4 for preference ranking and 6.8 for manual post-editing), while token-probability color shading helps annotators quickly spot low-confidence tokens prone to errors.</li>
 <li><strong>Flexible custom attribute annotation</strong>: Also supports turn-level and dialog-level custom rubric fields, including single-choice, multiple-choice, and free-text inputs.</li>
 </ul>
@@ -155,7 +161,7 @@
 <p>onPanda has been used in production at StepFun to annotate hundreds of thousands of alignment data samples across vision, audio, and agent trajectory tasks. It can be used in two ways:</p>
 <ul>
 <li><strong>Out of the box</strong>: Launch a local batch-annotation service with <a href="https://github.com/on-panda/on-panda/tree/main/packages/annotate"><code>@on-panda/annotate</code></a> (<code>npx @on-panda/annotate --dir {jsons dir}</code>), or deploy the <a href="https://github.com/on-panda/on-panda">onPanda web app</a> via static hosting;</li>
-<li><strong>Embedded into existing platforms</strong>: Built with a decoupled component architecture, onPanda's core annotation components can be imported as a frontend package into your team's existing annotation platform (with your platform backend handling task dispatching and collection). See <a href="https://github.com/on-panda/on-panda/tree/main/apps/integration-example">onPanda Integration Examples</a> for details.</li>
+<li><strong>Embedded into existing platforms</strong>: Built with a decoupled component architecture, onPanda&#39;s core annotation components can be imported as a frontend package into your team&#39;s existing annotation platform (with your platform backend handling task dispatching and collection). See <a href="https://github.com/on-panda/on-panda/tree/main/apps/integration-example">onPanda Integration Examples</a> for details.</li>
 </ul>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-16K331E76Z"></script>

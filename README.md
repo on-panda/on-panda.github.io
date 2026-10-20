@@ -4,13 +4,13 @@
 
 ## 一键构建
 
-只需要 **Node.js 18+** 和 **make**，不需要 npm install、Chrome 扩展、Pandoc 或其他依赖；构建过程不访问网络。
+需要 **Node.js 18+（含 npm）** 和 **make**。首次 `make` 会通过 `npm ci` 自动安装锁定版本的 Markdown Viewer 渲染依赖；之后输入不变就不会重新安装。无需浏览器扩展、Python 或 Pandoc，安装完成后的编译不访问网络。
 
 ```sh
 make
 ```
 
-也可以直接运行：
+依赖安装完成后，也可以直接运行：
 
 ```sh
 node scripts/build.mjs
@@ -58,15 +58,20 @@ node scripts/build.mjs
 - 标题、描述、关键词和自定义分享文案仍以 Markdown 为准。canonical、`og:url`、`twitter:url` 按页面路径统一生成带末尾 `/` 的地址，避免重复或错位。
 - 站点域名在 [scripts/build.mjs](scripts/build.mjs) 的 `SITE_URL` 中配置；首页跳转模板为 [templates/redirect.html](templates/redirect.html)。
 
-## Markdown 支持范围
+## 渲染技术栈
 
-[scripts/markdown.mjs](scripts/markdown.mjs) 是面向本站内容的轻量渲染器，不是完整 CommonMark 实现：
+不自行实现 Markdown 语法。[scripts/markdown.mjs](scripts/markdown.mjs) 只负责配置上游库和接入代码高亮，采用 Markdown Viewer 官方支持的 **Marked** 编译链路：
 
-- 支持标题及稳定 ID、段落、粗体/斜体、内联代码、链接/图片、围栏代码块、有序/无序及嵌套列表、分割线、显式引用和简单 GFM 风格表格。
-- 支持行尾两个空格或反斜杠换行。
-- `<div>` 等容器内，以空行分隔即可继续写 Markdown；HTML 注释、脚本、iframe 及原始 HTML 内容保持原样。
-- 不支持引用式链接、脚注、任务列表、缩进代码块、裸 URL 自动链接、LaTeX/MathJax 或完整的 CommonMark 边界规则。代码块输出语言 class，但不额外加载语法高亮 JavaScript。
-- **仅用于仓库作者撰写的可信内容**：不会清洗 HTML，不要用它直接发布不可信用户输入。
+- `marked@12.0.1`：Markdown / GFM；`gfm: true`、`breaks: false`、`pedantic: false`，保留作者 HTML。
+- `marked-gfm-heading-id@3.1.3`：GitHub 风格的标题 ID，与旧页面锚点兼容。
+- `marked-linkify-it@3.1.9`：自动识别链接；不启用 smartypants，避免改变论文标点。
+- `prismjs@1.29.0`：构建时生成语法高亮 token，复用原有 Prism CSS，不需要浏览器再次执行高亮脚本。
+
+版本和配置对应 Markdown Viewer 的 [Marked 依赖](https://github.com/simov/markdown-viewer/blob/main/build/marked/package.json)、[编译器配置](https://github.com/simov/markdown-viewer/blob/main/background/compilers/marked.js) 和 [Prism 依赖](https://github.com/simov/markdown-viewer/blob/main/build/prism/package.json)。Markdown Viewer 可选择多种编译器；这里固定使用 Marked，避免不同环境产生不同结果。
+
+依赖版本由 [package.json](package.json) 和 [package-lock.json](package-lock.json) 固定。Markdown、GFM 表格、列表、引用式链接、代码块等行为直接交给上游库；当前页面不含公式或 Mermaid 图，未额外引入这些可选渲染器。
+
+**仅用于仓库作者撰写的可信内容**：保留 HTML 和脚本，不要直接发布不可信用户输入。
 
 ## 检查
 
