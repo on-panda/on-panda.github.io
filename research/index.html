@@ -64,6 +64,18 @@
       aspect-ratio: 16 / 9;
     }
 
+    .markdown-body .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
     @media (max-width: 600px) {
       .markdown-body {
         min-width: 0;
@@ -79,16 +91,16 @@
 <div align="center">
 
 <h1 id="onpanda-efficient-annotation-of-on-policy-alignment-data-for-llms-and-agents-via-token-level-correction"><a class="anchor" href="#onpanda-efficient-annotation-of-on-policy-alignment-data-for-llms-and-agents-via-token-level-correction" aria-label="Link to this section"><span class="octicon octicon-link" aria-hidden="true"></span></a>onPanda: Efficient Annotation of On-Policy Alignment Data for LLMs and Agents via Token-Level Correction</h1>
-<p>Lei Yang<sup>1</sup> &nbsp;&nbsp;&nbsp; Mengyin Liu<sup>1,2</sup> &nbsp;&nbsp;&nbsp; Jia Wang<sup>1</sup> &nbsp;&nbsp;&nbsp; Hangyu Guo<sup>1</sup> &nbsp;&nbsp;&nbsp; Liang Zhao<sup>1</sup> &nbsp;&nbsp;&nbsp; Zheng Ge<sup>1</sup><br>Kang an<sup>1</sup> &nbsp;&nbsp;&nbsp; Binxing Jiao<sup>1</sup> &nbsp;&nbsp;&nbsp; Qi Han<sup>1</sup> &nbsp;&nbsp;&nbsp; Daxin Jiang<sup>1</sup> &nbsp;&nbsp;&nbsp; Siqi Shen<sup>2</sup> &nbsp;&nbsp;&nbsp; Xiangyu Zhang<sup>1</sup></p>
-<div style="margin-top:px;font-size:">
+<p>Lei Yang<sup>1</sup> &nbsp;&nbsp;&nbsp; Mengyin Liu<sup>1,2</sup> &nbsp;&nbsp;&nbsp; Jia Wang<sup>1</sup> &nbsp;&nbsp;&nbsp; Hangyu Guo<sup>1</sup> &nbsp;&nbsp;&nbsp; Liang Zhao<sup>1</sup> &nbsp;&nbsp;&nbsp; Zheng Ge<sup>1</sup><br>Kang An<sup>1</sup> &nbsp;&nbsp;&nbsp; Binxing Jiao<sup>1</sup> &nbsp;&nbsp;&nbsp; Qi Han<sup>1</sup> &nbsp;&nbsp;&nbsp; Daxin Jiang<sup>1</sup> &nbsp;&nbsp;&nbsp; Siqi Shen<sup>2</sup> &nbsp;&nbsp;&nbsp; Xiangyu Zhang<sup>1</sup></p>
+<div>
   <sup>1</sup>
   <a target="_blank" href="https://www.stepfun.com/">
-    <img src="../img/logo-StepFun.png" style="max-height:20px">
+    <img src="../img/logo-StepFun.png" alt="StepFun" style="max-height:20px"><span class="sr-only">StepFun</span>
   </a>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <sup>2</sup>
   <a target="_blank" href="https://asc.xmu.edu.cn/t/shensiqi">
-    <img src="../img/logo-xiamen-university.png" style="max-height:26px">
+    <img src="../img/logo-xiamen-university.png" alt="Xiamen University" style="max-height:26px"><span class="sr-only">Xiamen University</span>
   </a>
 </div>
 
@@ -108,7 +120,7 @@
 
 <br>
 <a href="../img/onPanda-token-level-correction.gif">
-  <img src="../img/onPanda-token-level-correction.gif" style="max-width:500px; box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 8px;">
+  <img src="../img/onPanda-token-level-correction.gif" alt="onPanda token-level correction interface: locate an inappropriate token, select a candidate or edit freely, and continue generation" style="max-width:500px; box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 8px;">
 </a>
 <br>
 
@@ -142,7 +154,7 @@ We present onPanda, an interactive tool for efficiently annotating LLM alignment
 
 <h3 id="agent-trajectory-annotation"><a class="anchor" href="#agent-trajectory-annotation" aria-label="Link to this section"><span class="octicon octicon-link" aria-hidden="true"></span></a>Agent Trajectory Annotation</h3>
 <a href="../img/fig2_agent-v4.png">
-  <img src="../img/fig2_agent-v4.png"  style="max-width:600px" loading="lazy">
+  <img src="../img/fig2_agent-v4.png" alt="Annotating an agent trajectory with onPanda: synchronized dual-view editing of reasoning and tool_calls with environment execution" style="max-width:600px" loading="lazy">
 </a>
 
 <p style="width:90%; text-align: justify"><b>Annotating an agent trajectory with onPanda.</b> Reasoning and tool-call arguments remain editable at token level. Corrected tool calls can be executed in the connected environment, and the resulting trajectory continues from the corrected context. 
@@ -155,9 +167,62 @@ Try <code>agent-annotate</code> example in the <a href="https://onpanda.diyer22.
 
 <h3 id="comparison-of-annotation-paradigms"><a class="anchor" href="#comparison-of-annotation-paradigms" aria-label="Link to this section"><span class="octicon octicon-link" aria-hidden="true"></span></a>Comparison of Annotation Paradigms</h3>
 <a href="../img/table1-annotaion-compare.png">
-  <img src="../img/table1-annotaion-compare.png"  style="max-width:800px" loading="lazy">
+  <img src="../img/table1-annotaion-compare.png" alt="Table 1: Comparison of annotation paradigms (Argilla, POTATO, and onPanda) in the controlled study" style="max-width:800px" loading="lazy">
 </a>
 
+</div>
+
+<div class="sr-only">
+
+<table>
+<thead>
+<tr>
+<th align="left">Tool</th>
+<th align="left">Paradigm</th>
+<th align="center">Time (s) ↓</th>
+<th align="center">Win rate ↑</th>
+<th align="center">PPL</th>
+<th align="center">Δ PPL</th>
+<th align="center">SFT Cov. ↑</th>
+<th align="center">Pref. pairs ↑</th>
+<th align="center">NASA-TLX ↓</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Argilla</td>
+<td align="left">rank 4 candidates</td>
+<td align="center">336 (684)</td>
+<td align="center">28.6%</td>
+<td align="center">1.161</td>
+<td align="center"><strong>- 0.83%</strong></td>
+<td align="center">11/21 (52%)</td>
+<td align="center">6.00</td>
+<td align="center">5.4</td>
+</tr>
+<tr>
+<td align="left">POTATO</td>
+<td align="left">post-editing</td>
+<td align="center">681 (711)</td>
+<td align="center">54.8%</td>
+<td align="center">1.596</td>
+<td align="center">+ 36.31%</td>
+<td align="center">21/21 (<strong>100%</strong>)</td>
+<td align="center">0.95</td>
+<td align="center">6.8</td>
+</tr>
+<tr>
+<td align="left"><strong>onPanda</strong></td>
+<td align="left">token-level correction</td>
+<td align="center"><strong>330 (516)</strong></td>
+<td align="center"><strong>66.7%</strong></td>
+<td align="center">1.181</td>
+<td align="center">+ 0.86%</td>
+<td align="center">21/21 (<strong>100%</strong>)</td>
+<td align="center"><strong>7.43</strong></td>
+<td align="center"><strong>3.1</strong></td>
+</tr>
+</tbody></table>
+<p>Table 1: Comparison of annotation paradigms in the controlled study. Time is reported in seconds as the median annotation time over the 21 prompts, with the mean in parentheses. Win rate is the fraction of LLM-judged pairwise comparisons each method wins against the other two. PPL is scored by the rollout model; ΔPPL is the relative change from the re-sampling baseline (1.171); smaller absolute values indicate higher on-policy fidelity. SFT Cov. is the fraction of prompts yielding a valid SFT response, and Pref. pairs is the mean number of derivable preference pairs per prompt. NASA-TLX, from the user study, is on our adapted 0–10 scale (lower is better).</p>
 </div>
 
 

@@ -18,7 +18,7 @@ test('discover article pages, but not README or tweet drafts', async () => {
     assert.ok(sources.includes(source));
   }
   assert.ok(sources.every(source => /(?:^|\/)index\.md$/.test(source)));
-  assert.equal(outputs.size, pages.length + (sources.includes('index.md') ? 0 : 1) + 3);
+  assert.equal(outputs.size, pages.length + (sources.includes('index.md') ? 0 : 1) + 4);
   assert.ok(!outputs.has('introduction/index.html'), 'preserve the standalone introduction redirect');
 });
 
@@ -34,6 +34,9 @@ for (const page of pages) {
     assert.doesNotMatch(body, /<(?:meta|title|head|style|link)\b/i);
     assert.doesNotMatch(page.html, /chrome-extension:\/\/|__hcfy__|MJX-CHTML/);
     assert.match(body, /<main id="_html" class="markdown-body">/);
+    for (const [imgTag] of body.matchAll(/<img\b[^>]*>/gi)) {
+      assert.match(imgTag, /\balt="[^"]+"/i, `${page.source}: every image needs non-empty alt text: ${imgTag}`);
+    }
     const themeHref = /<link rel="stylesheet" href="([^"]+)" id="_theme">/.exec(head)?.[1];
     assert.equal(new URL(themeHref, page.canonical).href, `${SITE_URL}research/themes/github.css`);
     assert.match(head, /max-width: 1024px;[\s\S]*padding: 45px;/);
@@ -58,24 +61,39 @@ for (const page of pages) {
   });
 }
 
-test('homepage preserves research redirect and canonicalizes to its trailing-slash URL', () => {
+test('homepage preserves research redirect, social metadata, and static links for crawlers', () => {
   const { head, body } = parts(outputs.get('index.html'));
   assert.match(head, /http-equiv="refresh" content="0; url=research\/"/);
   assert.ok(head.includes(`rel="canonical" href="${SITE_URL}research/"`));
+  for (const key of ['description', 'og:title', 'og:description', 'og:image', 'twitter:card', 'twitter:title', 'twitter:description', 'twitter:image']) {
+    assert.ok(meta(head, key), `homepage missing ${key}`);
+  }
   assert.match(body, /href="research\/"/);
+  assert.match(body, /href="Panda-CVL\/"/);
+  assert.match(body, /href="agent-trajectory-annotation\/"/);
 });
 
-test('sitemap, robots and llms cover canonical articles, excluding redirects and drafts', () => {
+test('sitemap, robots, llms and llms-full cover canonical articles, excluding redirects and drafts', () => {
   const sitemap = outputs.get('sitemap.xml');
   assert.match(sitemap, /xmlns="http:\/\/www.sitemaps.org\/schemas\/sitemap\/0.9"/);
   const locations = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(m => m[1]);
   assert.deepEqual(locations, pages.filter(page => page.indexable).map(page => page.canonical));
   assert.doesNotMatch(sitemap, /lastmod|introduction|README|index\.html/);
-  assert.ok(outputs.get('robots.txt').includes(`Sitemap: ${SITE_URL}sitemap.xml`));
-  assert.match(outputs.get('llms.txt'), /^# onPanda\n\n> /);
+  const robots = outputs.get('robots.txt');
+  assert.ok(robots.includes(`Sitemap: ${SITE_URL}sitemap.xml`));
+  for (const bot of ['OAI-SearchBot', 'GPTBot', 'Claude-SearchBot', 'ClaudeBot', 'PerplexityBot', 'Google-Extended', 'bingbot']) {
+    assert.ok(robots.includes(`User-agent: ${bot}`), `robots.txt missing ${bot}`);
+  }
+  const llms = outputs.get('llms.txt');
+  const llmsFull = outputs.get('llms-full.txt');
+  assert.match(llms, /^# onPanda\n\n> /);
+  assert.ok(llms.includes(`(${SITE_URL}llms-full.txt)`));
+  assert.doesNotMatch(llmsFull, /<head|<script|<!--|gtag\(/i);
+  assert.match(llmsFull, /\| \*\*onPanda\*\* \| token-level correction \| \*\*330 \(516\)\*\*/);
   for (const page of pages) {
-    assert.ok(outputs.get('llms.txt').includes(`(${page.canonical})`));
-    assert.ok(outputs.get('llms.txt').includes(`(${new URL(page.source, SITE_URL).href})`));
+    assert.ok(llms.includes(`(${page.canonical})`));
+    assert.ok(llms.includes(`(${new URL(page.source, SITE_URL).href})`));
+    assert.ok(llmsFull.includes(`URL: ${page.canonical}`));
   }
 });
 

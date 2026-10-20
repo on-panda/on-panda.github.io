@@ -13,6 +13,11 @@ const IGNORED = new Set(['node_modules', 'scripts', 'templates']);
 const TAG_ATTRIBUTES = /([\w:-]+)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/g;
 const META_TAG = /<meta\b(?:[^<>"']|"[^"]*"|'[^']*')*>/gi;
 const LINK_TAG = /<link\b(?:[^<>"']|"[^"]*"|'[^']*')*>/gi;
+const AI_BOTS = [
+  'OAI-SearchBot', 'GPTBot', 'ChatGPT-User',
+  'Claude-SearchBot', 'Claude-User', 'ClaudeBot',
+  'PerplexityBot', 'Google-Extended', 'Applebot-Extended', 'bingbot',
+];
 
 function decodeEntities(text) {
   const named = { amp: '&', quot: '"', apos: "'", lt: '<', gt: '>', nbsp: ' ' };
@@ -41,6 +46,40 @@ function fillTemplate(template, values) {
     if (!(key in values)) throw new Error(`Unknown template placeholder: ${key}`);
     return values[key];
   });
+}
+
+/** Clean author HTML/comments/scripts from page Markdown for llms-full.txt. */
+export function cleanMarkdownForLlms(markdown, canonical) {
+  let text = markdown
+    .replace(/^\s*<head\b[^>]*>[\s\S]*?<\/head>\s*/i, '')
+    .replace(/<!--[\s\S]*?-->/g, '')
+    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '');
+  text = text.replace(/<img\b([^>]*)>/gi, (_, attrs) => {
+    const map = attributes(`<img ${attrs}>`);
+    if (!map.src || /logo-/i.test(map.src)) return '';
+    const abs = new URL(map.src, canonical).href;
+    return `![${(map.alt ?? '').trim()}](${abs})`;
+  });
+  text = text.replace(/<span\b[^>]*>([\s\S]*?)<\/span>/gi, '$1');
+  text = text.replace(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi, (_, attrs, inner) => {
+    const map = attributes(`<a ${attrs}>`);
+    const label = inner.trim();
+    if (!map.href || !label) return label;
+    const abs = new URL(map.href, canonical).href;
+    if (label.startsWith('![') && label.endsWith(`](${abs})`)) return label;
+    return `[${label}](${abs})`;
+  });
+  return text
+    .replace(/<iframe\b[^>]*><\/iframe>/gi, '')
+    .replace(/<\/?(?:div|p|br|sub)\b[^>]*>/gi, '\n')
+    .replace(/<sup>([\s\S]*?)<\/sup>/gi, '^$1')
+    .replace(/<\/?(?:b|strong)>/gi, '**')
+    .replace(/<code>([\s\S]*?)<\/code>/gi, '`$1`')
+    .replace(/(?:&nbsp;\s*)+/g, ' ')
+    .replace(/^[ \t]+(!\[)/gm, '$1')
+    .replace(/[ \t]+\n/g, '\n')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
 }
 
 /** Each published page is an index.md, not README.md or an image/tweet draft. */
@@ -100,9 +139,10 @@ export function compilePage(markdown, source, template) {
   meta.set('twitter:url', canonical);
   // Normalize relative social images into absolute URLs, without changing page assets.
   for (const key of ['image', 'og:image', 'twitter:image']) meta.set(key, new URL(meta.get(key), canonical).href);
+  const image = meta.get('og:image');
   const structuredData = {
     '@context': 'https://schema.org', '@type': 'WebPage',
-    name: title, description, url: canonical, image: meta.get('og:image'),
+    name: title, description, url: canonical, image,
     isPartOf: { '@type': 'WebSite', name: 'onPanda', url: SITE_URL },
   };
   const metadata = [
@@ -122,7 +162,11 @@ export function compilePage(markdown, source, template) {
     githubCss: escapeHtml(relativeUrl(source, GITHUB_CSS)),
     prismCss: escapeHtml(relativeUrl(source, PRISM_CSS)),
   });
-  return { source, title, description, canonical, html, indexable: !/\b(?:noindex|none)\b/i.test(meta.get('robots')) };
+  return {
+    source, title, description, canonical, image, html,
+    llmsMarkdown: cleanMarkdownForLlms(markdown, canonical),
+    indexable: !/\b(?:noindex|none)\b/i.test(meta.get('robots')),
+  };
 }
 
 const markdownLabel = text => text.replace(/([\\\[\]])/g, '\\$1').replace(/\s+/g, ' ');
@@ -137,33 +181,69 @@ export async function generateSite(root = ROOT) {
   const pages = await Promise.all(sources.map(async source =>
     compilePage(await readFile(join(root, source), 'utf8'), source, template)));
   const outputs = new Map(pages.map(page => [page.source.replace(/\.md$/, '.html'), page.html]));
+  const published = pages.filter(page => page.indexable);
   if (!outputs.has('index.html')) {
     const research = pages.find(page => page.source === 'research/index.md');
     if (!research) throw new Error('The homepage redirect requires research/index.md');
     const redirect = await readFile(join(root, 'templates/redirect.html'), 'utf8');
+    const links = published.map(page => {
+      const href = page.source.replace(/index\.md$/, '');
+      return `      <li><a href="${escapeHtml(href)}">${escapeHtml(page.title)}</a>: ${escapeHtml(page.description.replace(/\s+/g, ' '))}</li>`;
+    }).join('\n');
     outputs.set('index.html', fillTemplate(redirect, {
-      canonical: escapeHtml(research.canonical), description: escapeHtml(research.description),
+      canonical: escapeHtml(research.canonical),
+      title: escapeHtml(research.title),
+      description: escapeHtml(research.description),
+      image: escapeHtml(research.image),
+      domain: escapeHtml(new URL(SITE_URL).hostname),
+      links,
     }));
   }
-  const published = pages.filter(page => page.indexable);
   outputs.set('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n' +
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
     published.map(page => `  <url><loc>${escapeHtml(page.canonical)}</loc></url>`).join('\n') + '\n</urlset>\n');
-  outputs.set('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${new URL('sitemap.xml', SITE_URL).href}\n`);
+  outputs.set('robots.txt', [
+    'User-agent: *',
+    'Allow: /',
+    '',
+    ...AI_BOTS.flatMap(bot => [`User-agent: ${bot}`, 'Allow: /', '']),
+    `Sitemap: ${new URL('sitemap.xml', SITE_URL).href}`,
+    '',
+  ].join('\n'));
   outputs.set('llms.txt', [
     '# onPanda', '',
-    '> onPanda is an open-source tool for annotating on-policy alignment data for LLMs and agents via token-level correction.', '',
+    '> onPanda (On-Policy Alignment Data Annotator) is an open-source interactive tool developed by StepFun and Xiamen University for annotating on-policy alignment data for LLMs and agents via token-level correction.', '',
     'This site contains the research overview, Panda-CVL dataset and benchmark, and an agent trajectory annotation guide.',
-    'Each page also provides its Markdown source, including author-supplied HTML for figures and metadata.', '',
+    'Each page also provides its Markdown source, and [llms-full.txt](https://on-panda.github.io/llms-full.txt) bundles the full text of all pages.', '',
+    '## Key facts', '',
+    '- **Core paradigm (token-level locate--correct--continue)**: Annotators locate the first inappropriate token in a model response, select a substitute from `top_logprobs` candidates or enter a free-form edit, and let the model continue generation from the corrected prefix.',
+    '- **Controlled study results (Table 1)**: Compared with manual post-editing (POTATO, 681s median) and 4-candidate preference ranking (Argilla, 336s median), onPanda reduces median annotation time by **52%** to **330s** (mean 516s), achieves the highest pairwise **win rate (66.7%)**, preserves on-policy fidelity with **PPL 1.181 (ΔPPL +0.86% vs. +36.31% for post-editing)**, reaches **100% SFT coverage (21/21)**, yields **7.43 preference pairs per prompt**, and lowers annotator workload to **3.1 NASA-TLX** (vs. 5.4 for Argilla and 6.8 for POTATO).',
+    '- **Production on-policy fidelity**: In StepFun production deployment, **97.0% of tokens** in qualified responses are generated by the rollout model itself.',
+    '- **Agent trajectory annotation**: Synchronized dual-view editing of `reasoning`, `content`, and `tool_calls`, pre-execution tool interception (Run/Reject), automatic annotation tree branching, native Streamable HTTP **MCP** support, and **`harness_to_mcp`** adapters for **Claude Code, Codex, and OpenCode**.',
+    '- **Panda-CVL dataset & benchmark**: 7,491 human-annotated sessions (6,839 train / 652 test) on multimodal vision-language tasks plus the English subset **Panda-MultiRef-21** (506 token-level corrections); best evaluated LLM achieves 17.09 F1.', '',
     '## Pages', '',
     ...published.map(page => `- [${markdownLabel(page.title)}](${page.canonical}): ${page.description.replace(/\s+/g, ' ')}`), '',
     '## Markdown sources', '',
+    '- [Full documentation (llms-full.txt)](https://on-panda.github.io/llms-full.txt): Complete cleaned Markdown content of all site pages in a single file.',
     ...published.map(page => `- [${markdownLabel(page.title)}](${new URL(page.source, SITE_URL).href}): Source for the corresponding page.`), '',
     '## Project resources', '',
-    '- [Source code](https://github.com/on-panda/on-panda): The onPanda application.',
-    '- [Live demo](https://onpanda.diyer22.com/): Try token-level correction and agent annotation.',
-    '- [Paper](https://arxiv.org/abs/2609.24983): Research paper on the annotation method and evaluation.',
-    '- [Python library](https://github.com/on-panda/on-panda-python): Parse and export annotation data.', '',
+    '- [Source code](https://github.com/on-panda/on-panda): The onPanda web application and `@on-panda/annotate` CLI.',
+    '- [Live demo](https://onpanda.diyer22.com/): Try token-level correction and [agent trajectory annotation](https://onpanda.diyer22.com/?example=agent-annotate).',
+    '- [Paper](https://arxiv.org/abs/2609.24983): Research paper on the annotation method and evaluation ([PDF](https://on-panda.github.io/asset/onPanda_Efficient_Annotation_of_On-Policy_Alignment_Data_20260917.pdf)).',
+    '- [Python library](https://github.com/on-panda/on-panda-python): Parse `.panda.json` files, export SFT/preference/token-level datasets, and run the Panda-CVL benchmark.',
+    '- [harness_to_mcp](https://github.com/on-panda/harness_to_mcp): Wrap agent harnesses (Claude Code, Codex, OpenCode) as MCP servers for onPanda.',
+    '- [Panda-CVL-train](https://huggingface.co/datasets/diyer22/Panda-CVL-train) & [Panda-CVL-test](https://huggingface.co/datasets/diyer22/Panda-CVL-test): Dataset splits on HuggingFace.',
+    '- [Panda-MultiRef-21](https://github.com/on-panda/Panda-MultiRef-21): English dataset for studying the distribution of token-level corrections.', '',
+  ].join('\n'));
+  outputs.set('llms-full.txt', [
+    '# onPanda — Full Documentation', '',
+    '> Complete Markdown content of https://on-panda.github.io/ (research overview, Panda-CVL dataset & benchmark, and agent trajectory annotation guide).', '',
+    ...published.map(page => [
+      '---', '',
+      `URL: ${page.canonical}`,
+      `Markdown source: ${new URL(page.source, SITE_URL).href}`, '',
+      page.llmsMarkdown, '',
+    ].join('\n')),
   ].join('\n'));
   return { pages, outputs };
 }

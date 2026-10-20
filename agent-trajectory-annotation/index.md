@@ -102,7 +102,7 @@ Compared with traditional manual post-editing or multi-sample preference ranking
 - **Significantly lower annotator workload**: In the user study, onPanda achieved an overall NASA-TLX workload score of **3.1** (substantially lower than 5.4 for preference ranking and 6.8 for manual post-editing), while token-probability color shading helps annotators quickly spot low-confidence tokens prone to errors.
 - **Flexible custom attribute annotation**: Also supports turn-level and dialog-level custom rubric fields, including single-choice, multiple-choice, and free-text inputs.
 
-Annotation results are saved in a single `.panda.json` file and can be exported into SFT, preference, and token-level correction training datasets using the companion [Python library `onpanda`](https://github.com/on-panda/on-panda-python). For the full controlled experimental design and analysis, see our paper: [onPanda: Efficient Annotation of On-Policy Alignment Data for LLMs and Agents via Token-Level Correction](https://arxiv.org/abs/2609.24983).
+Annotation results are saved in a single `.panda.json` file and can be exported into SFT, preference, and token-level correction training datasets using the companion [Python library `onpanda`](https://github.com/on-panda/on-panda-python) (see also the [Panda-CVL dataset and benchmark](https://on-panda.github.io/Panda-CVL/)). For the full controlled experimental design and analysis, see our paper: [onPanda: Efficient Annotation of On-Policy Alignment Data for LLMs and Agents via Token-Level Correction](https://arxiv.org/abs/2609.24983).
 
 ## Start your own agent annotation project
 

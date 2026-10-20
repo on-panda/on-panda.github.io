@@ -27,7 +27,7 @@ node scripts/build.mjs
 - [首页](index.html)：保留跳转到 `/research/` 的行为。
 - [sitemap.xml](sitemap.xml)：可索引内容页的规范 URL，不收录首页或 introduction 等重定向，不伪造修改时间。
 - [robots.txt](robots.txt)：允许抓取并声明 sitemap 位置。
-- [llms.txt](llms.txt)：站点说明、页面和 Markdown 源文件入口、项目资源。
+- [llms.txt](llms.txt) 与 [llms-full.txt](llms-full.txt)：站点说明、核心数据速览、页面和 Markdown 源文件入口、全站合并 Markdown 全文及项目资源。
 
 [README](README.md)、图片目录里的 tweet 草稿和其他非 `index.md` 文件不会被编译。隐藏目录、`node_modules`、`scripts` 和 `templates` 也会跳过。[introduction 的独立跳转](introduction/index.html)保持不变。
 

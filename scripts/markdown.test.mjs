@@ -41,7 +41,7 @@ test('legacy title layout, hard breaks, emphasis and nested resources', () => {
   assert.doesNotMatch(withoutComments(cvl), /Leaderboard|Abstract 中文/);
   const research = renderMarkdown(fixture('research'));
   assert.match(research, /<em><strong>Contributions of this paper:<\/strong><\/em>/);
-  assert.match(research, /Zheng Ge<sup>1<\/sup><br>\s*Kang an/);
+  assert.match(research, /Zheng Ge<sup>1<\/sup><br>\s*Kang An/);
   assert.match(research, /<li><a href="https:\/\/github.com\/on-panda\/Panda-MultiRef-21">[^]*?<ul>\s*<li><a[^>]*><strong>Browse dataset &amp; try annotation online<\/strong>/);
 });
 

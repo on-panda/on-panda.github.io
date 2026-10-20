@@ -27,15 +27,15 @@ Kang an<sup>1</sup> &nbsp;&nbsp;&nbsp; Binxing Jiao<sup>1</sup> &nbsp;&nbsp;&nbs
 
 
 
-<div style="margin-top:px;font-size:">
+<div>
   <sup>1</sup>
   <a target="_blank" href="https://www.stepfun.com/">
-    <img src="../img/logo-StepFun.png" style="max-height:20px">
+    <img src="../img/logo-StepFun.png" alt="StepFun" style="max-height:20px"><span class="sr-only">StepFun</span>
   </a>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <sup>2</sup>
   <a target="_blank" href="https://asc.xmu.edu.cn/t/shensiqi">
-    <img src="../img/logo-xiamen-university.png" style="max-height:26px">
+    <img src="../img/logo-xiamen-university.png" alt="Xiamen University" style="max-height:26px"><span class="sr-only">Xiamen University</span>
   </a>
 </div>
 
@@ -50,7 +50,7 @@ Kang an<sup>1</sup> &nbsp;&nbsp;&nbsp; Binxing Jiao<sup>1</sup> &nbsp;&nbsp;&nbs
 <!-- ### Token-Level Correction -->
 
 <a href="../img/onPanda-token-level-correction.gif">
-  <img src="../img/onPanda-token-level-correction.gif" style="max-width:500px; box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 8px;">
+  <img src="../img/onPanda-token-level-correction.gif" alt="The onPanda token-level correction interface used for annotating Panda-CVL" style="max-width:500px; box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 8px;">
 </a>
 <br>
 
@@ -127,7 +127,7 @@ A2:
 - For English scenarios, we additionally provide an English-only subset, [Panda-MultiRef-21](https://github.com/on-panda/Panda-MultiRef-21): annotated by annotators proficient in English, it contains 506 token-level correction operations and can be used to evaluate models' token-level correction capability in English
 
 Q3: Is there a standalone Panda-CVL paper?  
-A3: No -- Panda-CVL is introduced in the [onPanda paper](https://on-panda.github.io/research).
+A3: No -- Panda-CVL is introduced in the [onPanda paper](https://on-panda.github.io/research/).
 
 ---
 
@@ -139,6 +139,7 @@ A3: No -- Panda-CVL is introduced in the [onPanda paper](https://on-panda.github
 - [Live demo](https://onpanda.diyer22.com/): To load `panda.json`
 - [Panda-MultiRef-21](https://github.com/on-panda/Panda-MultiRef-21): A Small Dataset for Studying the Distribution of Token-Level Corrections
     - [Browse dataset & try online annotation](http://121.36.40.207:5190/on-panda-annotate/)
+- [Efficient Agent Trajectory Annotation with onPanda](https://on-panda.github.io/agent-trajectory-annotation/) - Blog
 
 
 <!-- Google tag (gtag.js) for Panda-CVL -->

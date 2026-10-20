@@ -64,6 +64,18 @@
       aspect-ratio: 16 / 9;
     }
 
+    .markdown-body .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
     @media (max-width: 600px) {
       .markdown-body {
         min-width: 0;
@@ -156,7 +168,7 @@
 <li><strong>Significantly lower annotator workload</strong>: In the user study, onPanda achieved an overall NASA-TLX workload score of <strong>3.1</strong> (substantially lower than 5.4 for preference ranking and 6.8 for manual post-editing), while token-probability color shading helps annotators quickly spot low-confidence tokens prone to errors.</li>
 <li><strong>Flexible custom attribute annotation</strong>: Also supports turn-level and dialog-level custom rubric fields, including single-choice, multiple-choice, and free-text inputs.</li>
 </ul>
-<p>Annotation results are saved in a single <code>.panda.json</code> file and can be exported into SFT, preference, and token-level correction training datasets using the companion <a href="https://github.com/on-panda/on-panda-python">Python library <code>onpanda</code></a>. For the full controlled experimental design and analysis, see our paper: <a href="https://arxiv.org/abs/2609.24983">onPanda: Efficient Annotation of On-Policy Alignment Data for LLMs and Agents via Token-Level Correction</a>.</p>
+<p>Annotation results are saved in a single <code>.panda.json</code> file and can be exported into SFT, preference, and token-level correction training datasets using the companion <a href="https://github.com/on-panda/on-panda-python">Python library <code>onpanda</code></a> (see also the <a href="https://on-panda.github.io/Panda-CVL/">Panda-CVL dataset and benchmark</a>). For the full controlled experimental design and analysis, see our paper: <a href="https://arxiv.org/abs/2609.24983">onPanda: Efficient Annotation of On-Policy Alignment Data for LLMs and Agents via Token-Level Correction</a>.</p>
 <h2 id="start-your-own-agent-annotation-project"><a class="anchor" href="#start-your-own-agent-annotation-project" aria-label="Link to this section"><span class="octicon octicon-link" aria-hidden="true"></span></a>Start your own agent annotation project</h2>
 <p>onPanda has been used in production at StepFun to annotate hundreds of thousands of alignment data samples across vision, audio, and agent trajectory tasks. It can be used in two ways:</p>
 <ul>

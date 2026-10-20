@@ -64,6 +64,18 @@
       aspect-ratio: 16 / 9;
     }
 
+    .markdown-body .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
     @media (max-width: 600px) {
       .markdown-body {
         min-width: 0;
@@ -86,15 +98,15 @@ Kang an<sup>1</sup> &nbsp;&nbsp;&nbsp; Binxing Jiao<sup>1</sup> &nbsp;&nbsp;&nbs
 
 
 
-<div style="margin-top:px;font-size:">
+<div>
   <sup>1</sup>
   <a target="_blank" href="https://www.stepfun.com/">
-    <img src="../img/logo-StepFun.png" style="max-height:20px">
+    <img src="../img/logo-StepFun.png" alt="StepFun" style="max-height:20px"><span class="sr-only">StepFun</span>
   </a>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <sup>2</sup>
   <a target="_blank" href="https://asc.xmu.edu.cn/t/shensiqi">
-    <img src="../img/logo-xiamen-university.png" style="max-height:26px">
+    <img src="../img/logo-xiamen-university.png" alt="Xiamen University" style="max-height:26px"><span class="sr-only">Xiamen University</span>
   </a>
 </div>
 
@@ -109,7 +121,7 @@ Kang an<sup>1</sup> &nbsp;&nbsp;&nbsp; Binxing Jiao<sup>1</sup> &nbsp;&nbsp;&nbs
 <!-- ### Token-Level Correction -->
 
 <a href="../img/onPanda-token-level-correction.gif">
-  <img src="../img/onPanda-token-level-correction.gif" style="max-width:500px; box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 8px;">
+  <img src="../img/onPanda-token-level-correction.gif" alt="The onPanda token-level correction interface used for annotating Panda-CVL" style="max-width:500px; box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 8px;">
 </a>
 <br>
 
@@ -181,7 +193,7 @@ A2:
 <li>Panda-CVL is a publicly releasable subset filtered from our in-house production annotation data, and our annotators are all native Chinese speakers</li>
 <li>For English scenarios, we additionally provide an English-only subset, <a href="https://github.com/on-panda/Panda-MultiRef-21">Panda-MultiRef-21</a>: annotated by annotators proficient in English, it contains 506 token-level correction operations and can be used to evaluate models&#39; token-level correction capability in English</li>
 </ul>
-<p>Q3: Is there a standalone Panda-CVL paper?<br>A3: No -- Panda-CVL is introduced in the <a href="https://on-panda.github.io/research">onPanda paper</a>.</p>
+<p>Q3: Is there a standalone Panda-CVL paper?<br>A3: No -- Panda-CVL is introduced in the <a href="https://on-panda.github.io/research/">onPanda paper</a>.</p>
 <hr>
 <h3 id="resources"><a class="anchor" href="#resources" aria-label="Link to this section"><span class="octicon octicon-link" aria-hidden="true"></span></a>Resources</h3>
 <ul>
@@ -193,6 +205,7 @@ A2:
 <li><a href="http://121.36.40.207:5190/on-panda-annotate/">Browse dataset &amp; try online annotation</a></li>
 </ul>
 </li>
+<li><a href="https://on-panda.github.io/agent-trajectory-annotation/">Efficient Agent Trajectory Annotation with onPanda</a> - Blog</li>
 </ul>
 <!-- Google tag (gtag.js) for Panda-CVL -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MQ38G3YVBQ"></script>

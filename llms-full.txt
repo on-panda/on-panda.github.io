@@ -1,0 +1,219 @@
+# onPanda — Full Documentation
+
+> Complete Markdown content of https://on-panda.github.io/ (research overview, Panda-CVL dataset & benchmark, and agent trajectory annotation guide).
+
+---
+
+URL: https://on-panda.github.io/Panda-CVL/
+Markdown source: https://on-panda.github.io/Panda-CVL/index.md
+
+Can LLMs Locate and Correct Errors at the Token Level?
+
+Panda-CVL: A Dataset and Benchmark for Token-Level Correction
+
+  ^1
+  [StepFun](https://www.stepfun.com/)
+     ^2
+  [Xiamen University](https://asc.xmu.edu.cn/t/shensiqi)
+
+![The onPanda token-level correction interface used for annotating Panda-CVL](https://on-panda.github.io/img/onPanda-token-level-correction.gif)
+
+The token-level correction interface used for annotating Panda-CVL
+For details about the annotation tool, see [onPanda](https://on-panda.github.io/research/)
+
+**Download the dataset on huggingFace 🤗:**
+- [Panda-CVL-test](https://huggingface.co/datasets/diyer22/Panda-CVL-test)
+- [Panda-CVL-train](https://huggingface.co/datasets/diyer22/Panda-CVL-train)
+
+**TL;DR:** We introduce Panda-CVL, a multimodal dataset and benchmark that formalizes token-level correction as a novel task, requiring models to identify the first inappropriate token in a response and predict an appropriate replacement token.
+
+---
+
+### Abstract
+
+We release Panda-CVL, a dataset and accompanying benchmark for evaluating models' token-level correction capability: given a question-response pair, the model must first judge whether the response is acceptable; if it decides a correction is needed, it must locate the first inappropriate token in the response and correct it to an appropriate one--so that the policy model can continue generating from the "correct prefix + corrected token" and ultimately produce an acceptable response. Compared with prior data that only identifies which step an error occurs in, Panda-CVL brings two improvements: (1) it refines error localization to the token level; (2) the model must not only point out which token is inappropriate but also provide the correct token it should be changed to, yielding supervision signals that are precise in both position and correction direction. Panda-CVL was annotated by human annotators using the onPanda annotation tool and contains 7,491 annotation sessions, split into a training set of 6,839 and a test set of 652; the training set can be directly used to strengthen models' token-level correction capability. Panda-CVL is annotated mainly on Chinese vision-language data; we additionally provide an English-only subset, Panda-MultiRef-21, which can be used to separately evaluate models' token-level correction capability in English. Evaluation of recent LLMs shows that this task remains challenging--the best model achieves an F1 of only 17.09. We further analyze the inter-annotator consistency of token-level correction through a controlled experiment, providing public resources and empirical references for research on this new type of data.
+
+---
+### Common Questions
+
+Q1: Why vision-language data instead of pure text?
+A1:
+- On pure-text tasks, models are already strong enough that effective supervision signals can only come from large-scale annotation by domain experts on highly difficult problems--costly and hard to scale
+- On many vision-language tasks, however, models still clearly fall short of humans--ordinary annotators are fully capable of doing the annotation and providing effective supervision signals
+
+Q2: Why is most of Panda-CVL in Chinese?
+A2:
+- Panda-CVL is a publicly releasable subset filtered from our in-house production annotation data, and our annotators are all native Chinese speakers
+- For English scenarios, we additionally provide an English-only subset, [Panda-MultiRef-21](https://github.com/on-panda/Panda-MultiRef-21): annotated by annotators proficient in English, it contains 506 token-level correction operations and can be used to evaluate models' token-level correction capability in English
+
+Q3: Is there a standalone Panda-CVL paper?
+A3: No -- Panda-CVL is introduced in the [onPanda paper](https://on-panda.github.io/research/).
+
+---
+
+### Resources
+
+- [Paper (arXiv)](https://arxiv.org/abs/2609.24983)
+- [Python library](https://github.com/on-panda/on-panda-python): Including benchmark code
+- [`panda.json` example](https://github.com/on-panda/on-panda-example-data/tree/main/panda_json)
+- [Live demo](https://onpanda.diyer22.com/): To load `panda.json`
+- [Panda-MultiRef-21](https://github.com/on-panda/Panda-MultiRef-21): A Small Dataset for Studying the Distribution of Token-Level Corrections
+    - [Browse dataset & try online annotation](http://121.36.40.207:5190/on-panda-annotate/)
+- [Efficient Agent Trajectory Annotation with onPanda](https://on-panda.github.io/agent-trajectory-annotation/) - Blog
+
+---
+
+URL: https://on-panda.github.io/agent-trajectory-annotation/
+Markdown source: https://on-panda.github.io/agent-trajectory-annotation/index.md
+
+# Efficient Agent Trajectory Annotation with onPanda
+**Dynamically connect to agent environments and annotate multi-turn SFT and preference data with `tool_calls` and `reasoning` online**
+
+Watch the [screen recording of agent trajectory annotation in onPanda (starting at 1:42)](https://youtu.be/0T4h4IUIZCM?t=102)
+
+Existing agent observability and annotation tools (such as [Potato](https://github.com/davidjurgens/potato) and [Argilla](https://github.com/argilla-io/argilla)) mostly support assigning attributes or adding textual feedback to completed trajectories. However, editing trajectories to construct high-quality multi-turn agent SFT data presents two core challenges:
+1. **Coupled environment state**: Agent trajectories alternate between tool calls (`tool_calls`) and environment feedback (`tool` messages). Once a tool call in a given turn is modified, the original subsequent trajectory is usually no longer valid—the corrected call must be executed in the real environment, and generation must continue from the new feedback.
+2. **Complex output structure**: In the era of reasoning models and agents, a single model response contains not only `content`, but also lengthy `reasoning` chains and structured `tool_calls`. Annotators must understand and edit both the reasoning process and tool arguments, making manual rewriting costly and annotation UI design challenging.
+
+[**onPanda**](https://github.com/on-panda/on-panda) ([Project Page](https://on-panda.github.io/research/)) is an open-source LLM alignment data annotation tool built around the paradigm of **correcting the generation process in real time** rather than rewriting outputs after the fact. onPanda dynamically connects to real agent runtime environments, allowing annotators to efficiently edit `reasoning`, `content`, and `tool_calls` at the token level and produce SFT, preference, and token-level supervision data with high on-policy fidelity through real environment interaction.
+
+### [Live Demo 🎮](https://onpanda.diyer22.com/?example=agent-annotate) | [Video Demo ▶️](https://youtu.be/0T4h4IUIZCM) | [Paper 📄](https://arxiv.org/abs/2609.24983) | [Source Code 👨‍💻](https://github.com/on-panda/on-panda)
+
+## Annotation interface and interaction
+
+In onPanda, while reading the model output, annotators simply **locate the first inappropriate token** and either select a replacement from the model's `top_logprobs` candidates or double-click to type a correction directly. onPanda then truncates everything after that position and lets the model continue generating from the corrected prefix:
+
+![onPanda token-level correction interaction: hover to select candidates and continue from prefix](https://on-panda.github.io/img/onPanda-token-level-correction.gif)
+
+For multi-turn agent trajectories, onPanda seamlessly extends this "locate–correct–continue" loop to reasoning chains and tool calls:
+
+![Annotating Agent Trajectories with onPanda](https://on-panda.github.io/img/fig2_agent-v4.png)
+
+As shown above, onPanda's agent annotation interface features three core mechanisms:
+1. **Synchronized dual-view editing**: Through bidirectional conversion via the Response Template, annotators can click candidates or edit tokens directly in the structured `reasoning` and `tool_calls` panels on the right, or modify the model's native token stream on the left (even inserting special tokens such as `</think>` to truncate overly long reasoning).
+2. **Pre-execution interception (Tool Call Control)**: Execution pauses before a tool modifies the environment. Annotators can fix `tool_calls` arguments before clicking **Run** to approve execution, or click **Reject** to decline the call (optionally with textual guidance so the model can replan).
+3. **Automatic annotation tree branching (`1~7` at the bottom)**: Every prefix edit or rejected tool call is automatically saved as a separate branch, naturally forming preference pairs under the exact same context prefix.
+
+👉 **Try it now**: Open the `agent-annotate` example in the [live demo](https://onpanda.diyer22.com/?example=agent-annotate) to explore and test it yourself.
+
+## Connect your own agent tools and environment
+
+Annotating agent trajectories in onPanda relies on real environment feedback and supports two ways to connect the target environment:
+1. **Native MCP integration**: onPanda natively supports MCP (Model Context Protocol). Any tool environment exposed as a Streamable HTTP MCP Server can be connected directly to the annotation workflow.
+2. **Existing agent harness integration**: If your target environment is an existing agent framework (harness), the companion [**harness_to_mcp**](https://github.com/on-panda/harness_to_mcp) tool wraps the harness's internal tools and runtime environment into an MCP Server for onPanda.
+    - `harness_to_mcp` natively supports **Claude Code, Codex, and OpenCode**. To support another custom harness, a coding agent can quickly implement an adapter by referencing the existing ones.
+
+To connect, simply specify the MCP server URL in `tool_configs` within your annotation data and set `"require_approval": "always"` to enable human interception and approval before tool execution (see the [`.panda.json` Data Format Specification](https://github.com/on-panda/on-panda-docs/blob/main/content/en/panda_json_format.md)):
+
+```json
+{
+  "version": "2.0",
+  "dialogs": {
+    "1": {
+      "messages": [{ "role": "user", "content": "What tools do you have available?" }],
+      "tool_configs": [
+        {
+          "type": "mcp",
+          "server_url": "http://127.0.0.1:9330/mcp",
+          "server_label": "claude-code",
+          "require_approval": "always"
+        }
+      ]
+    }
+  }
+}
+```
+
+Beyond environment integration, token-level correction requires an inference API that supports continuing generation from an assistant prefix (such as vLLM's `continue_final_message`), candidate selection relies on `top_logprobs`, and continuation within `reasoning` and `tool_calls` is handled automatically by built-in Response Templates. For supported inference engines (vLLM, SGLang, llama.cpp) and hosted API providers, see [API Compatibility](https://github.com/on-panda/on-panda-docs/blob/main/content/en/API_compatibility.md).
+
+## Benefits of the token-level correction paradigm
+
+Compared with traditional manual post-editing or multi-sample preference ranking, onPanda's token-level correction workflow offers several key advantages:
+- **2× faster annotation**: Candidate selection and local edits steer model continuation without rewriting from scratch. In our controlled study, onPanda reduced median per-item annotation time by **52%** compared with manual post-editing.
+- **SFT and preference data from a single workflow**: Final accepted responses and pre-correction/rejected branches are preserved automatically, constructing high-quality preference pairs under the exact same context prefix.
+- **Fine-grained token-level supervision**: Every correction records the exact first-error position and paired positive/negative tokens, which can be used directly for fine-grained alignment or combined with task step boundaries to construct Process Reward data for PRM training.
+- **High on-policy fidelity**: In StepFun's production deployment, **97.0% of tokens** in qualified responses are generated by the rollout model itself; in the controlled study, perplexity shift relative to the model's resampling baseline is **ΔPPL < 1%**, closely preserving the model's native distribution.
+- **Significantly lower annotator workload**: In the user study, onPanda achieved an overall NASA-TLX workload score of **3.1** (substantially lower than 5.4 for preference ranking and 6.8 for manual post-editing), while token-probability color shading helps annotators quickly spot low-confidence tokens prone to errors.
+- **Flexible custom attribute annotation**: Also supports turn-level and dialog-level custom rubric fields, including single-choice, multiple-choice, and free-text inputs.
+
+Annotation results are saved in a single `.panda.json` file and can be exported into SFT, preference, and token-level correction training datasets using the companion [Python library `onpanda`](https://github.com/on-panda/on-panda-python) (see also the [Panda-CVL dataset and benchmark](https://on-panda.github.io/Panda-CVL/)). For the full controlled experimental design and analysis, see our paper: [onPanda: Efficient Annotation of On-Policy Alignment Data for LLMs and Agents via Token-Level Correction](https://arxiv.org/abs/2609.24983).
+
+## Start your own agent annotation project
+
+onPanda has been used in production at StepFun to annotate hundreds of thousands of alignment data samples across vision, audio, and agent trajectory tasks. It can be used in two ways:
+
+- **Out of the box**: Launch a local batch-annotation service with [`@on-panda/annotate`](https://github.com/on-panda/on-panda/tree/main/packages/annotate) (`npx @on-panda/annotate --dir {jsons dir}`), or deploy the [onPanda web app](https://github.com/on-panda/on-panda) via static hosting;
+- **Embedded into existing platforms**: Built with a decoupled component architecture, onPanda's core annotation components can be imported as a frontend package into your team's existing annotation platform (with your platform backend handling task dispatching and collection). See [onPanda Integration Examples](https://github.com/on-panda/on-panda/tree/main/apps/integration-example) for details.
+
+---
+
+URL: https://on-panda.github.io/research/
+Markdown source: https://on-panda.github.io/research/index.md
+
+# onPanda: Efficient Annotation of On-Policy Alignment Data for LLMs and Agents via Token-Level Correction
+
+Lei Yang^1  Mengyin Liu^1,2  Jia Wang^1  Hangyu Guo^1  Liang Zhao^1  Zheng Ge^1
+Kang An^1  Binxing Jiao^1  Qi Han^1  Daxin Jiang^1  Siqi Shen^2  Xiangyu Zhang^1
+
+  ^1
+  [StepFun](https://www.stepfun.com/)
+     ^2
+  [Xiamen University](https://asc.xmu.edu.cn/t/shensiqi)
+
+### [Paper 📄](https://arxiv.org/abs/2609.24983) | [Demo 🎮](https://onpanda.diyer22.com/) | [Video ▶️](https://youtu.be/0T4h4IUIZCM) | [Tweet 💬](https://x.com/StepFun_ai/status/2102454115473510643) | [Dataset 📁](https://on-panda.github.io/Panda-CVL/) | [Code 👨‍💻](https://github.com/on-panda/on-panda)
+
+![onPanda token-level correction interface: locate an inappropriate token, select a candidate or edit freely, and continue generation](https://on-panda.github.io/img/onPanda-token-level-correction.gif)
+
+onPanda's token-level correction interface. Try the **[live demo](https://onpanda.diyer22.com/)**.
+
+**TL;DR:** An interactive tool that efficiently annotates on-policy alignment data for LLMs and agents via a token-level locate--correct--continue loop, automatically capturing fine-grained supervision.
+
+***Contributions of this paper:***
+- We propose onPanda, an annotation tool centered on token-level correction for efficiently annotating LLM alignment data and agent trajectories that stay close to the rollout model's distribution.
+- We experimentally validate onPanda's annotation efficiency and the on-policy fidelity of the produced data, and demonstrate its support for multimodal and agent-trajectory annotation.
+- We release the multimodal Panda-CVL dataset with an accompanying benchmark, providing public resources for research on token-level correction data.
+
+---
+
+### Abstract
+
+We present onPanda, an interactive tool for efficiently annotating LLM alignment data and agent trajectories. onPanda adopts token-level correction as its core interaction: while reading a model response, the annotator locates the first inappropriate token and either picks a substitute from the model's candidate tokens or types the correct text via free-form editing. The system then truncates everything after that position and continues generation from the corrected prefix, repeating this locate-correct-continue loop until a satisfactory response is obtained. This mechanism lets annotators precisely steer model outputs at low cost: a small controlled study suggests that onPanda reduces median annotation time by 52% over manual post-editing. Since the vast majority of tokens in the final response are generated by the model itself, the resulting data largely preserves the model's sampling distribution and is well suited for constructing on-policy SFT and preference data. Furthermore, the token-level corrections recorded during annotation provide fine-grained supervision with precise positions and naturally paired positive--negative samples. onPanda also connects to external tools and harnesses, enabling interactive trajectory annotation in realistic environments. In addition, we release Panda-CVL, a dataset annotated with onPanda, together with a benchmark for token-level correction.
+
+---
+
+### Agent Trajectory Annotation
+
+![Annotating an agent trajectory with onPanda: synchronized dual-view editing of reasoning and tool_calls with environment execution](https://on-panda.github.io/img/fig2_agent-v4.png)
+
+**Annotating an agent trajectory with onPanda.** Reasoning and tool-call arguments remain editable at token level. Corrected tool calls can be executed in the connected environment, and the resulting trajectory continues from the corrected context.
+Try `agent-annotate` example in the [live demo](https://onpanda.diyer22.com/).
+
+---
+
+### Comparison of Annotation Paradigms
+
+![Table 1: Comparison of annotation paradigms (Argilla, POTATO, and onPanda) in the controlled study](https://on-panda.github.io/img/table1-annotaion-compare.png)
+
+| Tool | Paradigm | Time (s) ↓ | Win rate ↑ | PPL | Δ PPL | SFT Cov. ↑ | Pref. pairs ↑ | NASA-TLX ↓ |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Argilla | rank 4 candidates | 336 (684) | 28.6% | 1.161 | **- 0.83%** | 11/21 (52%) | 6.00 | 5.4 |
+| POTATO | post-editing | 681 (711) | 54.8% | 1.596 | + 36.31% | 21/21 (**100%**) | 0.95 | 6.8 |
+| **onPanda** | token-level correction | **330 (516)** | **66.7%** | 1.181 | + 0.86% | 21/21 (**100%**) | **7.43** | **3.1** |
+
+Table 1: Comparison of annotation paradigms in the controlled study. Time is reported in seconds as the median annotation time over the 21 prompts, with the mean in parentheses. Win rate is the fraction of LLM-judged pairwise comparisons each method wins against the other two. PPL is scored by the rollout model; ΔPPL is the relative change from the re-sampling baseline (1.171); smaller absolute values indicate higher on-policy fidelity. SFT Cov. is the fraction of prompts yielding a valid SFT response, and Pref. pairs is the mean number of derivable preference pairs per prompt. NASA-TLX, from the user study, is on our adapted 0–10 scale (lower is better).
+
+---
+
+### Resources
+
+- [Paper (arXiv)](https://arxiv.org/abs/2609.24983)
+- [Source code](https://github.com/on-panda/on-panda)
+- [Python library](https://github.com/on-panda/on-panda-python)
+
+- [Demo video](https://x.com/StepFun_ai/status/2102454115473510643)
+- [Live demo](https://onpanda.diyer22.com/)
+- [Panda-CVL](https://on-panda.github.io/Panda-CVL/): Dataset and Benchmark for Token-Level Correction
+
+- [Panda-MultiRef-21](https://github.com/on-panda/Panda-MultiRef-21): A Small Dataset for Studying the Distribution of Token-Level Corrections
+    - [**Browse dataset & try annotation online**](http://121.36.40.207:5190/on-panda-annotate/)
+- [Efficient Agent Trajectory Annotation with onPanda](https://on-panda.github.io/agent-trajectory-annotation/) - Blog

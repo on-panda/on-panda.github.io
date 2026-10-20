@@ -21,19 +21,19 @@
 # onPanda: Efficient Annotation of On-Policy Alignment Data for LLMs and Agents via Token-Level Correction
 
 Lei Yang<sup>1</sup> &nbsp;&nbsp;&nbsp; Mengyin Liu<sup>1,2</sup> &nbsp;&nbsp;&nbsp; Jia Wang<sup>1</sup> &nbsp;&nbsp;&nbsp; Hangyu Guo<sup>1</sup> &nbsp;&nbsp;&nbsp; Liang Zhao<sup>1</sup> &nbsp;&nbsp;&nbsp; Zheng Ge<sup>1</sup>   
-Kang an<sup>1</sup> &nbsp;&nbsp;&nbsp; Binxing Jiao<sup>1</sup> &nbsp;&nbsp;&nbsp; Qi Han<sup>1</sup> &nbsp;&nbsp;&nbsp; Daxin Jiang<sup>1</sup> &nbsp;&nbsp;&nbsp; Siqi Shen<sup>2</sup> &nbsp;&nbsp;&nbsp; Xiangyu Zhang<sup>1</sup>
+Kang An<sup>1</sup> &nbsp;&nbsp;&nbsp; Binxing Jiao<sup>1</sup> &nbsp;&nbsp;&nbsp; Qi Han<sup>1</sup> &nbsp;&nbsp;&nbsp; Daxin Jiang<sup>1</sup> &nbsp;&nbsp;&nbsp; Siqi Shen<sup>2</sup> &nbsp;&nbsp;&nbsp; Xiangyu Zhang<sup>1</sup>
 
 
 
-<div style="margin-top:px;font-size:">
+<div>
   <sup>1</sup>
   <a target="_blank" href="https://www.stepfun.com/">
-    <img src="../img/logo-StepFun.png" style="max-height:20px">
+    <img src="../img/logo-StepFun.png" alt="StepFun" style="max-height:20px"><span class="sr-only">StepFun</span>
   </a>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <sup>2</sup>
   <a target="_blank" href="https://asc.xmu.edu.cn/t/shensiqi">
-    <img src="../img/logo-xiamen-university.png" style="max-height:26px">
+    <img src="../img/logo-xiamen-university.png" alt="Xiamen University" style="max-height:26px"><span class="sr-only">Xiamen University</span>
   </a>
 </div>
 
@@ -54,7 +54,7 @@ Kang an<sup>1</sup> &nbsp;&nbsp;&nbsp; Binxing Jiao<sup>1</sup> &nbsp;&nbsp;&nbs
 
 <br>
 <a href="../img/onPanda-token-level-correction.gif">
-  <img src="../img/onPanda-token-level-correction.gif" style="max-width:500px; box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 8px;">
+  <img src="../img/onPanda-token-level-correction.gif" alt="onPanda token-level correction interface: locate an inappropriate token, select a candidate or edit freely, and continue generation" style="max-width:500px; box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 8px;">
 </a>
 <br>
 
@@ -91,7 +91,7 @@ We present onPanda, an interactive tool for efficiently annotating LLM alignment
 ### Agent Trajectory Annotation
 
 <a href="../img/fig2_agent-v4.png">
-  <img src="../img/fig2_agent-v4.png"  style="max-width:600px" loading="lazy">
+  <img src="../img/fig2_agent-v4.png" alt="Annotating an agent trajectory with onPanda: synchronized dual-view editing of reasoning and tool_calls with environment execution" style="max-width:600px" loading="lazy">
 </a>
 
 <p style="width:90%; text-align: justify"><b>Annotating an agent trajectory with onPanda.</b> Reasoning and tool-call arguments remain editable at token level. Corrected tool calls can be executed in the connected environment, and the resulting trajectory continues from the corrected context. 
@@ -105,8 +105,20 @@ Try <code>agent-annotate</code> example in the <a href="https://onpanda.diyer22.
 ### Comparison of Annotation Paradigms
 
 <a href="../img/table1-annotaion-compare.png">
-  <img src="../img/table1-annotaion-compare.png"  style="max-width:800px" loading="lazy">
+  <img src="../img/table1-annotaion-compare.png" alt="Table 1: Comparison of annotation paradigms (Argilla, POTATO, and onPanda) in the controlled study" style="max-width:800px" loading="lazy">
 </a>
+
+</div>
+
+<div class="sr-only">
+
+| Tool | Paradigm | Time (s) ↓ | Win rate ↑ | PPL | Δ PPL | SFT Cov. ↑ | Pref. pairs ↑ | NASA-TLX ↓ |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Argilla | rank 4 candidates | 336 (684) | 28.6% | 1.161 | **- 0.83%** | 11/21 (52%) | 6.00 | 5.4 |
+| POTATO | post-editing | 681 (711) | 54.8% | 1.596 | + 36.31% | 21/21 (**100%**) | 0.95 | 6.8 |
+| **onPanda** | token-level correction | **330 (516)** | **66.7%** | 1.181 | + 0.86% | 21/21 (**100%**) | **7.43** | **3.1** |
+
+Table 1: Comparison of annotation paradigms in the controlled study. Time is reported in seconds as the median annotation time over the 21 prompts, with the mean in parentheses. Win rate is the fraction of LLM-judged pairwise comparisons each method wins against the other two. PPL is scored by the rollout model; ΔPPL is the relative change from the re-sampling baseline (1.171); smaller absolute values indicate higher on-policy fidelity. SFT Cov. is the fraction of prompts yielding a valid SFT response, and Pref. pairs is the mean number of derivable preference pairs per prompt. NASA-TLX, from the user study, is on our adapted 0–10 scale (lower is better).
 
 </div>
 
