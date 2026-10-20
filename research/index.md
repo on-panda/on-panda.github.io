@@ -126,7 +126,7 @@ Try <code>agent-annotate</code> example in the <a href="https://onpanda.diyer22.
     - [Panda-CVL-train](https://huggingface.co/datasets/diyer22/Panda-CVL-train) -->
 - [Panda-MultiRef-21](https://github.com/on-panda/Panda-MultiRef-21): A Small Dataset for Studying the Distribution of Token-Level Corrections
     - [**Browse dataset & try annotation online**](http://121.36.40.207:5190/on-panda-annotate/)
-
+- [Efficient Agent Trajectory Annotation with onPanda](https://on-panda.github.io/agent-trajectory-annotation/) - Blog
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-16K331E76Z"></script>
