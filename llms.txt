@@ -1,0 +1,25 @@
+# onPanda
+
+> onPanda is an open-source tool for annotating on-policy alignment data for LLMs and agents via token-level correction.
+
+This site contains the research overview, Panda-CVL dataset and benchmark, and an agent trajectory annotation guide.
+Each page also provides its Markdown source, including author-supplied HTML for figures and metadata.
+
+## Pages
+
+- [Panda-CVL: Can LLMs Locate and Correct Errors at the Token Level?](https://on-panda.github.io/Panda-CVL/): Can LLMs Locate and Correct Errors at the Token Level? Panda-CVL: A Dataset and Benchmark for Token-Level Correction
+- [Efficient Agent Trajectory Annotation with onPanda](https://on-panda.github.io/agent-trajectory-annotation/): Annotate agent trajectories with onPanda: edit reasoning and tool calls at token level, connect real environments via MCP, and export SFT and preference data.
+- [onPanda: Efficient Annotation of On-Policy Alignment Data for LLMs and Agents via Token-Level Correction](https://on-panda.github.io/research/): An interactive tool that efficiently annotates on-policy alignment data for LLMs and agent trajectories via a token-level locate--correct--continue loop, automatically capturing fine-grained supervision.
+
+## Markdown sources
+
+- [Panda-CVL: Can LLMs Locate and Correct Errors at the Token Level?](https://on-panda.github.io/Panda-CVL/index.md): Source for the corresponding page.
+- [Efficient Agent Trajectory Annotation with onPanda](https://on-panda.github.io/agent-trajectory-annotation/index.md): Source for the corresponding page.
+- [onPanda: Efficient Annotation of On-Policy Alignment Data for LLMs and Agents via Token-Level Correction](https://on-panda.github.io/research/index.md): Source for the corresponding page.
+
+## Project resources
+
+- [Source code](https://github.com/on-panda/on-panda): The onPanda application.
+- [Live demo](https://onpanda.diyer22.com/): Try token-level correction and agent annotation.
+- [Paper](https://arxiv.org/abs/2609.24983): Research paper on the annotation method and evaluation.
+- [Python library](https://github.com/on-panda/on-panda-python): Parse and export annotation data.

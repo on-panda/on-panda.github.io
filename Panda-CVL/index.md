@@ -141,32 +141,6 @@ A3: No -- Panda-CVL is introduced in the [onPanda paper](https://on-panda.github
     - [Browse dataset & try online annotation](http://121.36.40.207:5190/on-panda-annotate/)
 
 
-<style>
-    html,
-    body {
-        width: auto !important;
-        max-width: 100% !important;
-        padding: 0px !important;
-        margin: 0px !important;
-    }
-
-    ._theme-github {
-        background-color: rgb(255, 255, 255);
-    }
-
-    .markdown-body {
-        min-width: 468px;
-        max-width: 1024px;
-        background-color: rgb(255, 255, 255);
-        overflow: auto;
-        border-width: 1px;
-        border-style: solid;
-        border-color: rgb(221, 221, 221);
-        border-image: initial;
-        padding: 45px;
-        margin: 20px auto;
-    }
-</style>
 <!-- Google tag (gtag.js) for Panda-CVL -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MQ38G3YVBQ"></script>
 <script>

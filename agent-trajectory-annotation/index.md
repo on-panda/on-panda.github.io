@@ -69,7 +69,7 @@ Annotating agent trajectories in onPanda relies on real environment feedback and
 2. **Existing agent harness integration**: If your target environment is an existing agent framework (harness), the companion [**harness_to_mcp**](https://github.com/on-panda/harness_to_mcp) tool wraps the harness's internal tools and runtime environment into an MCP Server for onPanda.
     - `harness_to_mcp` natively supports **Claude Code, Codex, and OpenCode**. To support another custom harness, a coding agent can quickly implement an adapter by referencing the existing ones.
 
-To connect, simply specify the MCP server URL in `tool_configs` within your annotation data and set `"require_approval": "always"` to enable human interception and approval before tool execution (see the [`.panda.json` Data Format Specification](panda_json_format.md)):
+To connect, simply specify the MCP server URL in `tool_configs` within your annotation data and set `"require_approval": "always"` to enable human interception and approval before tool execution (see the [`.panda.json` Data Format Specification](https://github.com/on-panda/on-panda-docs/blob/main/content/en/panda_json_format.md)):
 
 ```json
 {
@@ -90,7 +90,7 @@ To connect, simply specify the MCP server URL in `tool_configs` within your anno
 }
 ```
 
-Beyond environment integration, token-level correction requires an inference API that supports continuing generation from an assistant prefix (such as vLLM's `continue_final_message`), candidate selection relies on `top_logprobs`, and continuation within `reasoning` and `tool_calls` is handled automatically by built-in Response Templates. For supported inference engines (vLLM, SGLang, llama.cpp) and hosted API providers, see [API Compatibility](API_compatibility.md).
+Beyond environment integration, token-level correction requires an inference API that supports continuing generation from an assistant prefix (such as vLLM's `continue_final_message`), candidate selection relies on `top_logprobs`, and continuation within `reasoning` and `tool_calls` is handled automatically by built-in Response Templates. For supported inference engines (vLLM, SGLang, llama.cpp) and hosted API providers, see [API Compatibility](https://github.com/on-panda/on-panda-docs/blob/main/content/en/API_compatibility.md).
 
 ## Benefits of the token-level correction paradigm
 
