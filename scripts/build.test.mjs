@@ -18,7 +18,7 @@ test('discover article pages, but not README or tweet drafts', async () => {
     assert.ok(sources.includes(source));
   }
   assert.ok(sources.every(source => /(?:^|\/)index\.md$/.test(source)));
-  assert.equal(outputs.size, pages.length + (sources.includes('index.md') ? 0 : 1) + 4);
+  assert.equal(outputs.size, pages.length + (sources.includes('index.md') ? 0 : 1) + 5);
   assert.ok(!outputs.has('introduction/index.html'), 'preserve the standalone introduction redirect');
 });
 
@@ -155,4 +155,19 @@ test('all local HTML links, images, and stylesheet references resolve without ne
 test('generation is deterministic and does not depend on build time', async () => {
   const again = await generateSite();
   assert.deepEqual([...again.outputs], [...outputs]);
+});
+
+test('404 page and --case-aliases handle lowercase URL variants such as /panda-cvl/', async () => {
+  const notFound = outputs.get('404.html');
+  assert.ok(notFound);
+  assert.match(notFound, /name="robots" content="noindex"/);
+  assert.ok(notFound.includes('"/panda-cvl":"/Panda-CVL/"'));
+  assert.ok(notFound.includes('"/panda-cvl/index.md":"/Panda-CVL/index.md"'));
+  const withAliases = await generateSite(ROOT, { caseAliases: true });
+  const aliasHtml = withAliases.outputs.get('panda-cvl/index.html');
+  assert.ok(aliasHtml);
+  assert.match(aliasHtml, /name="robots" content="noindex, follow"/);
+  assert.match(aliasHtml, /http-equiv="refresh" content="0; url=\/Panda-CVL\/"/);
+  assert.ok(aliasHtml.includes(`rel="canonical" href="${SITE_URL}Panda-CVL/"`));
+  assert.ok(!withAliases.outputs.has('panda-cvl/index.md'));
 });

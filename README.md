@@ -25,6 +25,7 @@ node scripts/build.mjs
 同时生成：
 
 - [首页](index.html)：保留跳转到 `/research/` 的行为。
+- [404.html](404.html)：自定义 404 页，自动把 `/panda-cvl/` 等大小写变体跳转到规范路径；GitHub Actions 部署时还会通过 `--case-aliases` 额外生成小写路径的 HTTP 200 跳转页。
 - [sitemap.xml](sitemap.xml)：可索引内容页的规范 URL，不收录首页或 introduction 等重定向，不伪造修改时间。
 - [robots.txt](robots.txt)：允许抓取并声明 sitemap 位置。
 - [llms.txt](llms.txt) 与 [llms-full.txt](llms-full.txt)：站点说明、核心数据速览、页面和 Markdown 源文件入口、全站合并 Markdown 全文及项目资源。
