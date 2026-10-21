@@ -34,6 +34,7 @@ for (const page of pages) {
     assert.doesNotMatch(body, /<(?:meta|title|head|style|link)\b/i);
     assert.doesNotMatch(page.html, /chrome-extension:\/\/|__hcfy__|MJX-CHTML/);
     assert.match(body, /<main id="_html" class="markdown-body">/);
+    assert.equal((body.match(/<h1\b/g) ?? []).length, 1);
     for (const [imgTag] of body.matchAll(/<img\b[^>]*>/gi)) {
       assert.match(imgTag, /\balt="[^"]+"/i, `${page.source}: every image needs non-empty alt text: ${imgTag}`);
     }

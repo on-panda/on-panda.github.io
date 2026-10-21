@@ -71,7 +71,7 @@ export function cleanMarkdownForLlms(markdown, canonical) {
   });
   return text
     .replace(/<iframe\b[^>]*><\/iframe>/gi, '')
-    .replace(/<\/?(?:div|p|br|sub)\b[^>]*>/gi, '\n')
+    .replace(/<\/?(?:div|p|br|sub|h[1-6])\b[^>]*>/gi, '\n')
     .replace(/<sup>([\s\S]*?)<\/sup>/gi, '^$1')
     .replace(/<\/?(?:b|strong)>/gi, '**')
     .replace(/<code>([\s\S]*?)<\/code>/gi, '`$1`')

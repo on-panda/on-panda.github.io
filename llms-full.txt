@@ -186,7 +186,7 @@ We present onPanda, an interactive tool for efficiently annotating LLM alignment
 ![Annotating an agent trajectory with onPanda: synchronized dual-view editing of reasoning and tool_calls with environment execution](https://on-panda.github.io/img/fig2_agent-v4.png)
 
 **Annotating an agent trajectory with onPanda.** Reasoning and tool-call arguments remain editable at token level. Corrected tool calls can be executed in the connected environment, and the resulting trajectory continues from the corrected context.
-Try `agent-annotate` example in the [live demo](https://onpanda.diyer22.com/).
+Try `agent-annotate` example in the [live demo](https://onpanda.diyer22.com/), or see [Efficient Agent Trajectory Annotation with onPanda](https://on-panda.github.io/agent-trajectory-annotation/) for details.
 
 ---
 

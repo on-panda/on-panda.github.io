@@ -36,7 +36,7 @@ for (const page of ['research', 'Panda-CVL', 'agent-trajectory-annotation']) {
 
 test('legacy title layout, hard breaks, emphasis and nested resources', () => {
   const cvl = renderMarkdown(fixture('Panda-CVL'));
-  assert.match(cvl, /<p><span[^>]*>Can LLMs[^]*?<\/span>\n<br>\n<span[^>]*>Panda-CVL[^]*?<\/span><\/p>/);
+  assert.match(cvl, /<h1[^>]*><span[^>]*>Can LLMs[^]*?<\/span>\n<br>\n<span[^>]*>Panda-CVL[^]*?<\/span><\/h1>/);
   assert.match(cvl, /pure text\?<br>\s*A1:/);
   assert.doesNotMatch(withoutComments(cvl), /Leaderboard|Abstract 中文/);
   const research = renderMarkdown(fixture('research'));
