@@ -30,7 +30,7 @@ node scripts/build.mjs
 - [robots.txt](robots.txt)：允许抓取并声明 sitemap 位置。
 - [llms.txt](llms.txt) 与 [llms-full.txt](llms-full.txt)：站点说明、核心数据速览、页面和 Markdown 源文件入口、全站合并 Markdown 全文及项目资源。
 
-[README](README.md)、图片目录里的 tweet 草稿和其他非 `index.md` 文件不会被编译。隐藏目录、`node_modules`、`scripts` 和 `templates` 也会跳过。[introduction 的独立跳转](introduction/index.html)保持不变。
+[README](README.md)、[release](release/) 中的发布文案和其他非 `index.md` 文件不会被编译。隐藏目录、`node_modules`、`scripts` 和 `templates` 也会跳过。[introduction 的独立跳转](introduction/index.html)保持不变。
 
 ## 编辑和新增页面
 
