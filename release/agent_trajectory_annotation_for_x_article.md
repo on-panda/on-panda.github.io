@@ -2,7 +2,7 @@
 
 **Dynamically connect to agent environments and annotate multi-turn SFT and preference data with `tool_calls` and `reasoning` online**
 
-Existing agent observability and annotation tools (such as [Potato](https://github.com/davidjurgens/potato) and [Argilla](https://github.com/argilla-io/argilla)) mostly support assigning attributes or adding textual feedback to completed trajectories. However, editing trajectories to construct high-quality multi-turn agent SFT data presents two core challenges:
+Existing agent annotation tools (such as [Potato](https://github.com/davidjurgens/potato) and [Argilla](https://github.com/argilla-io/argilla)) mostly support assigning attributes or adding textual feedback to completed trajectories. However, editing trajectories to construct high-quality multi-turn agent SFT data presents two core challenges:
 
 1. **Coupled environment state**: Agent trajectories alternate between tool calls (`tool_calls`) and environment feedback (`tool` messages). Once a tool call in a given turn is modified, the original subsequent trajectory is usually no longer valid—the corrected call must be executed in the real environment, and generation must continue from the new feedback.
 2. **Complex output structure**: In the era of reasoning models and agents, a single model response contains not only `content`, but also lengthy `reasoning` chains and structured `tool_calls`. Annotators must understand and edit both the reasoning process and tool arguments, making manual rewriting costly and annotation UI design challenging.
