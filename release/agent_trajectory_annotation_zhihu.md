@@ -39,7 +39,7 @@ onPanda 标注 Agent 轨迹依赖真实的环境反馈，支持通过两种方�
 2. **现有 Agent Harness 接入**：若目标环境是一个现成的 Agent 框架（Harness），可通过配套的 [**harness_to_mcp**](https://github.com/on-panda/harness_to_mcp) 工具，将 Harness 内部的工具和运行环境包装成 MCP Server 接入 onPanda。
     - `harness_to_mcp` 已原生支持 **Claude Code、Codex、OpenCode**；若需适配其他自定义 Harness，可让 Coding Agent 参考现有适配器快速完成接入。
 
-接入时，只需在待标注数据的 `tool_configs` 中填入 MCP 地址，并开启 `"require_approval": "always"` 即可激活人工拦截审批（详见 [`.panda.json` 数据格式规范](https://github.com/on-panda/on-panda-docs/blob/main/content/zh-cn/panda_json_format.md)）：
+接入时，只需在待标注数据的 `tool_configs` 中填入 MCP 地址，并开启 `"require_approval": "always"` 即可激活人工拦截审批（详见 [".panda.json" 数据格式规范](https://github.com/on-panda/on-panda-docs/blob/main/content/zh-cn/panda_json_format.md)）：
 
 ```json
 {
