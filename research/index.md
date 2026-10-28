@@ -95,7 +95,7 @@ We present onPanda, an interactive tool for efficiently annotating LLM alignment
 </a>
 
 <p style="width:90%; text-align: justify"><b>Annotating an agent trajectory with onPanda.</b> Reasoning and tool-call arguments remain editable at token level. Corrected tool calls can be executed in the connected environment, and the resulting trajectory continues from the corrected context. 
-Try <code>agent-annotate</code> example in the <a href="https://onpanda.diyer22.com/" target="_blank">live demo</a>, or see <a href="https://on-panda.github.io/agent-trajectory-annotation/">Efficient Agent Trajectory Annotation with onPanda</a> for details.</p>
+Try <code>agent-annotate</code> example in the <a href="https://onpanda.diyer22.com/" target="_blank">live demo</a>, or see our blog <a href="https://on-panda.github.io/agent-trajectory-annotation/">onPanda is Efficient Agent Trajectory Annotation Tool</a> for details.</p>
 </div>
 
 
@@ -139,6 +139,7 @@ Table 1: Comparison of annotation paradigms in the controlled study. Time is rep
 - [Panda-MultiRef-21](https://github.com/on-panda/Panda-MultiRef-21): A Small Dataset for Studying the Distribution of Token-Level Corrections
     - [**Browse dataset & try annotation online**](http://121.36.40.207:5190/on-panda-annotate/)
 - [Efficient Agent Trajectory Annotation with onPanda](https://on-panda.github.io/agent-trajectory-annotation/) - Blog
+  - Dynamically connect to agent environments and annotate multi-turn SFT and preference data with `tool_calls` and `reasoning` online
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-16K331E76Z"></script>

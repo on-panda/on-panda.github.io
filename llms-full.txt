@@ -217,3 +217,4 @@ Table 1: Comparison of annotation paradigms in the controlled study. Time is rep
 - [Panda-MultiRef-21](https://github.com/on-panda/Panda-MultiRef-21): A Small Dataset for Studying the Distribution of Token-Level Corrections
     - [**Browse dataset & try annotation online**](http://121.36.40.207:5190/on-panda-annotate/)
 - [Efficient Agent Trajectory Annotation with onPanda](https://on-panda.github.io/agent-trajectory-annotation/) - Blog
+  - Dynamically connect to agent environments and annotate multi-turn SFT and preference data with `tool_calls` and `reasoning` online
